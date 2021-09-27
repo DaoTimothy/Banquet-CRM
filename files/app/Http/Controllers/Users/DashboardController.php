@@ -135,10 +135,11 @@ class DashboardController extends UserController
 
             $customers = $this->companyRepository->getAll()->count();
             $contracts = $this->contractRepository->getAll()->count();
-            $event_count = Event::get()->count();
+            $event_count = 0; //Event::get()->count();
             $products = $this->productRepository->getAll()->count();
-
+            
             $event_leads = array();
+            /*
             for($i=4;$i>=0;$i--)
             {
                 $event_leads[] =
@@ -149,14 +150,15 @@ class DashboardController extends UserController
                             'leads'=>$this->leadRepository->getAll()->where('created_at','LIKE',
                               Carbon::now()->subMonth($i)->format('Y-m').'%')->count());
             }
-            $decorator = Decorators::get()->count();
-            $entertainer = Entertainment::get()->count();
-            $photo = Photographers::get()->count();
-            $caterer = EventCaterers::get()->count();
-            $miscellaneous = EventMiscellaneous::get()->count();
-            $transport = TransportationService::get()->count();
-            $saleOrders = Event::where('status','DEFINITE')->get()->count();
-
+            */
+            $decorator = 0;//Decorators::get()->count();
+            $entertainer = 0;//Entertainment::get()->count();
+            $photo = 0;//Photographers::get()->count();
+            $caterer = 0;//EventCaterers::get()->count();
+            $miscellaneous = 0;//EventMiscellaneous::get()->count();
+            $transport = 0;//TransportationService::get()->count();
+            $saleOrders = 0;//Event::where('status','DEFINITE')->get()->count();
+            
             $customers_world = $this->companyRepository->getAll()
                 ->with('cities')
                 ->whereNotNull('latitude')
@@ -184,19 +186,22 @@ class DashboardController extends UserController
                         'city' => isset($customer->cities) ? $customer->cities->name : '',
                     ];
                 });
-
-            $today_event = Event::with('booking','owner','contactus')
+            
+            $today_event = array();//Event::with('booking','owner','contactus')
+            /*
                 ->whereHas('booking',function ($query){
                     $query->whereBetween(\DB::raw('DATE(from_date)'),[date('Y-m-d'),date('Y-m-d',strtotime("+1week"))]);
                 })->get();
-
+            */
             $today_leads = Lead::with('eventTypeTrashed','salesPerson')->whereBetween(\DB::raw('DATE(created_at)'),[date('Y-m-d',strtotime("-1week")),date('Y-m-d')])
                 ->orderBy(\DB::raw('DATE(created_at)') ,'desc')->get();
 
-            $activity = $this->getActivity();
+            $activity = array();//$this->getActivity();
+            /*
             if(count($activity) > 0){
                 $activity = array_slice($activity ,0 ,25);
             }
+            */
 
             $leads_chart = array();
             for($i=31;$i>=0;$i--)
@@ -206,8 +211,9 @@ class DashboardController extends UserController
                         'year' =>Carbon::now()->subDay($i)->format('d'),
                         'lead' =>$this->leadRepository->getAll()->where(\DB::raw('DATE(created_at)'), Carbon::now()->subDay($i)->format('Y-m-d'))->count());
             }
-
+            
             $event_chart = array();
+            /*
             for($i=30;$i>=0;$i--)
             {
                 $event_chart[] =
@@ -217,6 +223,7 @@ class DashboardController extends UserController
                             $query->where(\DB::raw('DATE(from_date)'), Carbon::now()->subDay($i)->format('Y-m-d'));
                         })->groupBy('booking_id')->count());
             }
+            */
 
             $sale_chart = array();
             for($i=30;$i>=0;$i--)
@@ -228,13 +235,13 @@ class DashboardController extends UserController
             }
 
             return view('user.index', compact('customers', 'contracts', 'event_count','products',
-                'customers_world', 'customers_usa','event_leads','stages','decorator','entertainer','activity',
+                'customers_world', 'customers_usa','event_leads',/*'stages'*/0,'decorator','entertainer','activity',
                 'photo','caterer','miscellaneous','transport','today_event','leads_chart','event_chart','sale_chart','saleOrders','today_leads'));
         }
     }
 
     function getActivity(){
-        $lead_history = Lead::with('user','eventTypeTrashed','locationTrashed')->get();
+        //$lead_history = Lead::with('user','eventTypeTrashed','locationTrashed')->get();
         $event_history = Event::with('user','booking','contactus.event_type_trashed','booking.location_trashed')->get();
 
         $data = [];
