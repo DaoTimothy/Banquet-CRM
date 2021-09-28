@@ -376,7 +376,7 @@ class DashboardController extends UserController
 
     public function getAllActivity(){
         $title = trans('dashboard.actlog');
-        $activity = $this->getActivity();
+        $activity = array(); //$this->getActivity();
         return view('user.activity',compact('title','activity'));
     }
 }

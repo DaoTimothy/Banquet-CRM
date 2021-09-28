@@ -201,8 +201,7 @@ class CompanyController extends UserController
         $emails = Email::whereIn('to',$agent_id)->get()->count();
 
         $contracts = Contract::where('company_id',$company->id)->get()->count();
-
-
+            
         return view('user.company.delete', compact('title', 'company','action','total_invoices','open_invoices','paid_invoices',
             'quotations_total','salesorder','quotations','invoices','calls','meeting','emails','contracts','overdue_invoices',
             'salesorder_total'));
@@ -237,7 +236,8 @@ class CompanyController extends UserController
         $emails = Email::whereIn('to',$agent_id)->get()->count();
 
         $contracts = Contract::where('company_id',$company->id)->get()->count();
-
+        
+        $action = 'delete';
         return view('user.company.delete', compact('title', 'company','action','total_invoices','open_invoices','paid_invoices',
             'quotations_total','salesorder','quotations','invoices','calls','meeting','emails','contracts','overdue_invoices',
             'salesorder_total'));

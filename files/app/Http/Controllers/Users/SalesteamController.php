@@ -75,7 +75,7 @@ class SalesteamController extends UserController
     public function create(salesteam $salesteam)
     {
         $title = trans('salesteam.new');
-
+        $newSales = 0;
         $this->generateParams();
 
         return view('user.salesteam.create', compact('title','newSales'));

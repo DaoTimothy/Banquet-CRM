@@ -82,7 +82,7 @@ class MeetingController extends UserController
     public function create()
     {
         $title = trans('meeting.new');
-
+        $company_attendees = array();
         $this->generateParams();
 
         return view('user.meeting.create', compact('title','company_attendees'));

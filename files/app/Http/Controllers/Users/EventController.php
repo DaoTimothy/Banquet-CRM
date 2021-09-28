@@ -124,7 +124,8 @@ class EventController extends UserController
     {
         $title = trans('Event Overview');
         $title2 = trans('Event List');
-        $event = $this->eventRepository->getAll()
+        
+        $event = array();/*$this->eventRepository->getAll()
             ->with('booking', 'owner_trashed', 'booking.location_trashed', 'logistics','contactus.event_type_trashed','lead')
             ->where(function($query){
                 if(!Sentinel::inRole('admin')){
@@ -134,6 +135,7 @@ class EventController extends UserController
             ->get()
             ->groupBy('status')
             ->toArray();
+        */
 
         foreach ($event as $key => $value){
             foreach ($value as  $key2 => $events){

@@ -76,6 +76,7 @@ class BookingReportController extends UserController {
 
         if($filter == 'week'){
             $bookings = array();
+            /*
             for($i=6;$i>=0;$i--)
             {
                 $bookings[] =
@@ -83,6 +84,7 @@ class BookingReportController extends UserController {
                         'year' =>Carbon::now()->subDay($i)->format('d'),
                         'bookings'=>EventBooking::where(\DB::raw('DATE(created_at)'), Carbon::now()->subDay($i)->format('Y-m-d'))->count());
             }
+            */
         }
         if($filter == 'month'){
             $bookings = array();

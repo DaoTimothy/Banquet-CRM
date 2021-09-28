@@ -315,9 +315,9 @@ class LeadController extends UserController {
 //                ];
 //            } )->pluck( 'title', 'value' )
 //            ->prepend(trans('lead.select_function'), '');
-        $event_types = EventType::get()->pluck( 'name', 'id' )->prepend(trans('lead.select_event'), '');
+        $event_types = array(); //EventType::get()->pluck( 'name', 'id' )->prepend(trans('lead.select_event'), '');
 
-        $location = EventLocations::get()->pluck('name','id')->prepend(trans('event.location'), '');
+        $location = array(); //EventLocations::get()->pluck('name','id')->prepend(trans('event.location'), '');
 
 		view()->share( 'tags', $tags );
 		view()->share( 'priority', $priority );

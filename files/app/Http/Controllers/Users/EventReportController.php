@@ -90,6 +90,7 @@ class EventReportController extends UserController {
 
         if($filter == 'week'){
             $event = array();
+            /*
             for($i=6;$i>=0;$i--)
             {
                 $event[] =
@@ -98,7 +99,8 @@ class EventReportController extends UserController {
                         'event'=>Event::with('booking')->whereHas('booking',function($query) use ($i){
                             $query->where(\DB::raw('DATE(from_date)'), Carbon::now()->subDay($i)->format('Y-m-d'));
                         })->groupBy('booking_id')->count());
-            }
+            } 
+            */
         }
         if($filter == 'month'){
             $event = array();
