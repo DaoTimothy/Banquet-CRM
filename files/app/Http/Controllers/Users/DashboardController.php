@@ -235,7 +235,7 @@ class DashboardController extends UserController
             }
 
             return view('user.index', compact('customers', 'contracts','event_count','products',
-                'customers_world', 'customers_usa','event_leads',/*'stages'*/ 0,'decorator','entertainer','activity',
+                'customers_world', 'customers_usa','event_leads',/*'stages'*/0,'decorator','entertainer','activity',
                 'photo','caterer','miscellaneous','transport','today_event','leads_chart','event_chart','sale_chart','saleOrders','today_leads'));
         }
     }
@@ -270,9 +270,10 @@ class DashboardController extends UserController
                         'updated_at' => $history->updated_at,
                         'time_diff' =>$date,
                         'priority' => $leads->priority,
-                        //'location' => $leads->locationTrashed->name,
+                        'location' => ($leads->locationTrashed) ? $leads->locationTrashed->name : '1', // This line casuses an error
                         'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
                     ];
+
                 }
             }
             $date_diff = \DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s'))->diff(\DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s',strtotime($leads->created_at))));
@@ -297,7 +298,7 @@ class DashboardController extends UserController
                 'new_value' =>'',
                 'time_diff' =>$date,
                 'priority' => $leads->priority,
-                //'location' => $leads->locationTrashed->name,
+                'location' => ($leads->locationTrashed) ? $leads->locationTrashed->name : '1',
                 'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
             ];
         }
