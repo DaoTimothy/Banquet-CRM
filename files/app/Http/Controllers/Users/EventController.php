@@ -253,7 +253,7 @@ class EventController extends UserController
         $grand_total = 0;
 
         $customer = Customer::where('website',$request->get('client_email'))->first();
-        if(!count($customer) > 0){
+        if(!count(array($customer)) > 0){
             $cust = new Customer();
             $name = $request->get('booking');
             $name = explode(" ",$name);

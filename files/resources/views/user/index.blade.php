@@ -508,7 +508,7 @@
                 },
                 donut: {
                     width: 30,
-                    title: "6 Suppliers",
+                    title: "",
                     label: {
                         show: false
                     }

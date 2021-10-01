@@ -256,6 +256,7 @@ class DashboardController extends UserController
                     }else{
                         $date = $date_diff->i . ' minutes ago';
                     }
+                    
                     $data[] = [
                         'id' => $leads->id,
                         'type' => 'lead',
@@ -270,7 +271,7 @@ class DashboardController extends UserController
                         'updated_at' => $history->updated_at,
                         'time_diff' =>$date,
                         'priority' => $leads->priority,
-                        'location' => ($leads->locationTrashed) ? $leads->locationTrashed->name : '1', // This line casuses an error
+                        'location' => $leads->location_trashed,
                         'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
                     ];
 
@@ -298,7 +299,7 @@ class DashboardController extends UserController
                 'new_value' =>'',
                 'time_diff' =>$date,
                 'priority' => $leads->priority,
-                'location' => ($leads->locationTrashed) ? $leads->locationTrashed->name : '1',
+                'location' => $leads->location_trashed,
                 'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
             ];
         }

@@ -115,11 +115,11 @@ class Collection extends BaseCollection implements QueueableCollection
     public function merge($items)
     {
         $dictionary = $this->getDictionary();
-
+        
         foreach ($items as $item) {
             $dictionary[$item->getKey()] = $item;
         }
-
+        
         return new static(array_values($dictionary));
     }
 
