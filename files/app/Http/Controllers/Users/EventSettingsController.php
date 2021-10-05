@@ -413,9 +413,16 @@ class EventSettingsController extends UserController
     public function catererStore(EventSettingsRequest $eventSettings)
     {
         $data = new EventCaterers();
-        $data->name = $eventSettings->get('name');
-        $data->service_provided = $eventSettings->get('service_provided');
-        $data->price = $eventSettings->get("price");
+        $data->name = $eventSettings->get("name");
+
+        $count = $eventSettings->get("supplierPackages");
+        foreach (explode(",", $count) as $key => $value) {
+            if ($eventSettings->has("package_name_" . $value)) {
+                $data->price = $eventSettings->get("package_price_" . $value);
+                $data->service_provided = $eventSettings->get("package_services_" . $value);
+            }
+        }
+        
         $data->address = $eventSettings->get("address");
         $data->email = $eventSettings->get("email");
         $data->phone = $eventSettings->get("phone");
@@ -441,7 +448,7 @@ class EventSettingsController extends UserController
         $data->save();
 
         $count = $eventSettings->get("supplierPackages");
-        foreach (explode(",", $count) as $key => $value) {
+        foreach (explode(",", $count) as $key => $vaue) {
             $eventSupplier = new SupplierPackage();
             $eventSupplier->supplier_id = $data->id;
             $eventSupplier->supplier_type = 'caterer';
@@ -586,8 +593,14 @@ class EventSettingsController extends UserController
     public function photoStore(EventSettingsRequest $eventSettings)
     {
         $data = new Photographers();
-        $data->name = $eventSettings->get('name');
-        $data->price = $eventSettings->get("price");
+        $data->name = $eventSettings->get("name");
+        
+        foreach (explode(",", $count) as $key => $value) {
+            if ($eventSettings->has("package_name_" . $value)) {
+                $data->price = $eventSettings->get("package_price_" . $value);
+            }
+        }
+        
         $data->address = $eventSettings->get("address");
         $data->email = $eventSettings->get("email");
         $data->phone = $eventSettings->get("phone");

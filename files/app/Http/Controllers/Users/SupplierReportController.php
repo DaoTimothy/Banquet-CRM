@@ -100,8 +100,8 @@ class SupplierReportController extends UserController {
                 ];
             });
 
-            //$all_data = $entertain_data->merge($decorator_data)->merge($photo_data)->merge($transport_data)->merge($caterer_data);
-            $all_data = (object) array_merge ((array) $entertain_data, (array) $decorator_data, (array) $photo_data, (array) $transport_data, (array) $caterer_data);
+            $all_data = $entertain_data->merge($decorator_data)->merge($photo_data)->merge($transport_data)->merge($caterer_data);
+            //$all_data = (object) array_merge ((array) $entertain_data, (array) $decorator_data, (array) $photo_data, (array) $transport_data, (array) $caterer_data);
         }
 
         if($filter == 'caterer'){

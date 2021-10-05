@@ -121,7 +121,7 @@ class LeadController extends UserController {
 	public function store( LeadRequest $request ) {
 
 	    $customer = Customer::where('website',$request->get('email'))->first();
-	    if(!count($customer) > 0){
+	    //if(!count($customer) > 0){
              $cust = new Customer();
              $name = $request->get('client_name');
              $name = explode(" ",$name);
@@ -131,7 +131,7 @@ class LeadController extends UserController {
              $customer_data['mobile'] = $request->get('mobile');
              $customer_data['company_id'] = $request->get('company_name');
              $cust->create($customer_data);
-        }
+        //}
 		$this->leadRepository->store( $request->all() );
 
 		return redirect( "lead" );

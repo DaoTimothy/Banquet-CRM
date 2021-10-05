@@ -137,9 +137,8 @@ class DashboardController extends UserController
             $contracts = $this->contractRepository->getAll()->count();
             $event_count = Event::get()->count();
             $products = $this->productRepository->getAll()->count();
-            
+
             $event_leads = array();
-            
             for($i=4;$i>=0;$i--)
             {
                 $event_leads[] =
@@ -150,7 +149,6 @@ class DashboardController extends UserController
                             'leads'=>$this->leadRepository->getAll()->where('created_at','LIKE',
                               Carbon::now()->subMonth($i)->format('Y-m').'%')->count());
             }
-            
             $decorator = Decorators::get()->count();
             $entertainer = Entertainment::get()->count();
             $photo = Photographers::get()->count();
@@ -158,7 +156,7 @@ class DashboardController extends UserController
             $miscellaneous = EventMiscellaneous::get()->count();
             $transport = TransportationService::get()->count();
             $saleOrders = Event::where('status','DEFINITE')->get()->count();
-            
+
             $customers_world = $this->companyRepository->getAll()
                 ->with('cities')
                 ->whereNotNull('latitude')
@@ -186,21 +184,19 @@ class DashboardController extends UserController
                         'city' => isset($customer->cities) ? $customer->cities->name : '',
                     ];
                 });
-            
+
             $today_event = Event::with('booking','owner','contactus')
                 ->whereHas('booking',function ($query){
                     $query->whereBetween(\DB::raw('DATE(from_date)'),[date('Y-m-d'),date('Y-m-d',strtotime("+1week"))]);
                 })->get();
-            
+
             $today_leads = Lead::with('eventTypeTrashed','salesPerson')->whereBetween(\DB::raw('DATE(created_at)'),[date('Y-m-d',strtotime("-1week")),date('Y-m-d')])
                 ->orderBy(\DB::raw('DATE(created_at)') ,'desc')->get();
 
             $activity = $this->getActivity();
-            
             if(count($activity) > 0){
                 $activity = array_slice($activity ,0 ,25);
             }
-            
 
             $leads_chart = array();
             for($i=31;$i>=0;$i--)
@@ -210,9 +206,8 @@ class DashboardController extends UserController
                         'year' =>Carbon::now()->subDay($i)->format('d'),
                         'lead' =>$this->leadRepository->getAll()->where(\DB::raw('DATE(created_at)'), Carbon::now()->subDay($i)->format('Y-m-d'))->count());
             }
-            
+
             $event_chart = array();
-            
             for($i=30;$i>=0;$i--)
             {
                 $event_chart[] =
@@ -222,8 +217,6 @@ class DashboardController extends UserController
                             $query->where(\DB::raw('DATE(from_date)'), Carbon::now()->subDay($i)->format('Y-m-d'));
                         })->groupBy('booking_id')->count());
             }
-            
-            
 
             $sale_chart = array();
             for($i=30;$i>=0;$i--)
@@ -234,7 +227,7 @@ class DashboardController extends UserController
                         'sale'=>Saleorder::where(\DB::raw('DATE(created_at)'), Carbon::now()->subDay($i)->format('Y-m-d'))->count());
             }
 
-            return view('user.index', compact('customers', 'contracts','event_count','products',
+            return view('user.index', compact('customers', 'contracts', 'event_count','products',
                 'customers_world', 'customers_usa','event_leads',/*'stages'*/0,'decorator','entertainer','activity',
                 'photo','caterer','miscellaneous','transport','today_event','leads_chart','event_chart','sale_chart','saleOrders','today_leads'));
         }
@@ -248,6 +241,8 @@ class DashboardController extends UserController
         foreach ($lead_history as $key => $leads){
             if(count($leads->revisionHistory) > 0){
                 foreach ($leads->revisionHistory as $history){
+                    $date = Carbon::parse($history->updated_at)->diffForHumans();
+                    /*
                     $date_diff = \DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s'))->diff(\DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s',strtotime($history->updated_at))));
                     if($date_diff->d > 0 ){
                         $date = $date_diff->d . ' days ago';
@@ -256,7 +251,7 @@ class DashboardController extends UserController
                     }else{
                         $date = $date_diff->i . ' minutes ago';
                     }
-                    
+                    */
                     $data[] = [
                         'id' => $leads->id,
                         'type' => 'lead',
@@ -271,10 +266,9 @@ class DashboardController extends UserController
                         'updated_at' => $history->updated_at,
                         'time_diff' =>$date,
                         'priority' => $leads->priority,
-                        'location' => $leads->location_trashed,
+                        'location' => $leads->locationTrashed,//->name,
                         'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
                     ];
-
                 }
             }
             $date_diff = \DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s'))->diff(\DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s',strtotime($leads->created_at))));
@@ -299,7 +293,7 @@ class DashboardController extends UserController
                 'new_value' =>'',
                 'time_diff' =>$date,
                 'priority' => $leads->priority,
-                'location' => $leads->location_trashed,
+                'location' => $leads->locationTrashed,//->name,
                 'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
             ];
         }
@@ -307,6 +301,8 @@ class DashboardController extends UserController
         foreach ($event_history as $key => $events){
             if(count($events->revisionHistory) > 0){
                 foreach ($events->revisionHistory as $history){
+                    $date = Carbon::parse($history->updated_at)->diffForHumans();
+                    /*
                     $date_diff = \DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s'))->diff(\DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s',strtotime($history->updated_at))));
                     if($date_diff->d > 0){
                         $date = $date_diff->d . ' days ago';
@@ -315,6 +311,7 @@ class DashboardController extends UserController
                     }else{
                         $date = $date_diff->i . ' minutes ago';
                     }
+                    */
                     $data[] = [
                         'id' => $events->id,
                         'type' => 'event',
@@ -334,6 +331,8 @@ class DashboardController extends UserController
                     ];
                 }
             }
+            $date = Carbon::parse($events->created_at)->diffForHumans();
+            /*
             $date_diff = \DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s'))->diff(\DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s',strtotime($events->created_at))));
             if($date_diff->d > 0){
                 $date = $date_diff->d . ' days ago';
@@ -342,6 +341,7 @@ class DashboardController extends UserController
             }else{
                 $date = $date_diff->i . ' minutes ago';
             }
+            */
             $data[] = [
                 'id' => $events->id,
                 'type' => 'event',

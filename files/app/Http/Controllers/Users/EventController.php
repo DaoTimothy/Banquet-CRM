@@ -1130,7 +1130,7 @@ class EventController extends UserController
 
     public function data(Datatables $datatables)
     {
-        if(Sentinel::inRole('admin')){
+        /*if(!Sentinel::inRole('admin')){
             $event = $this->eventRepository->getAll()
                 ->with('booking', 'contacts', 'owner_trashed', 'booking.location_trashed', 'logistics','contactus')
                 ->get()
@@ -1139,21 +1139,22 @@ class EventController extends UserController
                     $result = '';
                     foreach($temp as $t)
                         $result .= $t[0];
+                    
                     $final_name = $result .'_Event_' . str_replace("-",'',date('d-m-Y',strtotime($event->booking->from_date))) . '' . str_replace(":",'',str_replace( "pm",'',str_replace("am",'',$event->start_time)));
                     return [
                         'id' => $event->id,
-                        'event' => $event->booking->booking_name,
+                        'event' => $event->booking,//->booking_name,
                         'name' => $final_name,
                         'event_planner' => ($event->owner_trashed) ? $event->owner_trashed->first_name .' '. $event->owner_trashed->last_name : '',
-                        'created_at' => date('D d,M Y',strtotime($event->booking->from_date)),
+                        'created_at' => date('D d,M Y',strtotime($event->booking)),//->from_date)),
                         'time' => $event->start_time,
 //                        'room' => EventRooms::select('room_name')->whereIn('id',explode(",",$event->rooms))->get()->pluck('room_name'),
-                        'venue' => $event->booking->location_trashed->name ,
-                        'contact' => $event->booking->client_phone,
+                        'venue' => $event->booking,//->location_trashed->name ,
+                        'contact' => $event->booking,//->client_phone,
                         'status' => $event->status,
                     ];
                 });
-        }else{
+        }else{ */
             $event = $this->eventRepository->getAll()
                 ->with('booking', 'contacts', 'owner_trashed', 'booking.location_trashed', 'logistics')
                 ->where('owner_id',Sentinel::getUser()->id)
@@ -1177,7 +1178,7 @@ class EventController extends UserController
                         'status' => $event->status,
                     ];
                 });
-        }
+        //}
 
         return $datatables->collection($event)
             ->addColumn('Actions', '@if(Sentinel::getUser()->hasAccess([\'event.write\']) || Sentinel::inRole(\'admin\'))
