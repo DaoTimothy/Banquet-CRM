@@ -253,17 +253,20 @@ class EventController extends UserController
         $grand_total = 0;
 
         $customer = Customer::where('website',$request->get('client_email'))->first();
-        if(!count($customer) > 0){
-            $cust = new Customer();
-            $name = $request->get('booking');
-            $name = explode(" ",$name);
-            $customer_data['first_name'] = (isset($name[0])) ? $name[0] : '';
-            $customer_data['last_name'] = (isset($name[1])) ? $name[1] : '';
-            $customer_data['website'] = $request->get('client_email');
-            $customer_data['mobile'] = $request->get('client_phone');
-            $customer_data['company_id'] = $request->get('client_company');
-            $cust->create($customer_data);
+        if (is_countable($customer)) {
+            if (count($customer) <= 0){
+                $cust = new Customer();
+                $name = $request->get('booking');
+                $name = explode(" ",$name);
+                $customer_data['first_name'] = (isset($name[0])) ? $name[0] : '';
+                $customer_data['last_name'] = (isset($name[1])) ? $name[1] : '';
+                $customer_data['website'] = $request->get('client_email');
+                $customer_data['mobile'] = $request->get('client_phone');
+                $customer_data['company_id'] = $request->get('client_company');
+                $cust->create($customer_data);
+            }
         }
+        
 
         $booking_data['booking_name'] = $request->get("booking");
         $booking_data['location_id'] = $request->get("location");
@@ -1143,14 +1146,14 @@ class EventController extends UserController
                     $final_name = $result .'_Event_' . str_replace("-",'',date('d-m-Y',strtotime($event->booking->from_date))) . '' . str_replace(":",'',str_replace( "pm",'',str_replace("am",'',$event->start_time)));
                     return [
                         'id' => $event->id,
-                        'event' => $event->booking,//->booking_name,
+                        'event' => $event->booking->booking_name,
                         'name' => $final_name,
                         'event_planner' => ($event->owner_trashed) ? $event->owner_trashed->first_name .' '. $event->owner_trashed->last_name : '',
-                        'created_at' => date('D d,M Y',strtotime($event->booking)),//->from_date)),
+                        'created_at' => date('D d,M Y',strtotime($event->booking->from_date)),
                         'time' => $event->start_time,
 //                        'room' => EventRooms::select('room_name')->whereIn('id',explode(",",$event->rooms))->get()->pluck('room_name'),
-                        'venue' => $event->booking,//->location_trashed->name ,
-                        'contact' => $event->booking,//->client_phone,
+                        'venue' => $event->booking->location_trashed->name,
+                        'contact' => $event->booking->client_phone,
                         'status' => $event->status,
                     ];
                 });

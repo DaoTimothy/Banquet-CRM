@@ -266,7 +266,7 @@ class DashboardController extends UserController
                         'updated_at' => $history->updated_at,
                         'time_diff' =>$date,
                         'priority' => $leads->priority,
-                        'location' => $leads->location_trashed->name,
+                        'location' => $leads->location_trashed,//->name,
                         'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
                     ];
                 }
@@ -293,7 +293,7 @@ class DashboardController extends UserController
                 'new_value' =>'',
                 'time_diff' =>$date,
                 'priority' => $leads->priority,
-                'location' => $leads->locationTrashed->name,
+                'location' => $leads->locationTrashed,//->name,
                 'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
             ];
         }
@@ -349,14 +349,14 @@ class DashboardController extends UserController
                 'user' => ($events->user) ? $events->user->first_name .' '. $events->user->last_name : '',
                 'user_id' => ($events->user) ? $events->user->id : '',
                 'key' => '',
-                'client' => $events->booking->booking_name,
+                'client' => $events->booking,//->booking_name,
                 'status' => 'created',
                 'updated_at' => $events->created_at,
                 'old_value' =>'',
                 'new_value' =>'',
                 'time_diff' => $date,
                 'priority' => $events->status,
-                'location' => $events->booking->location_trashed->name,
+                'location' => $events->booking,//->location_trashed->name,
                 'event_type' => $events->contactus->event_type_trashed->name
             ];
         }

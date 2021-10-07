@@ -122,7 +122,7 @@ class LeadController extends UserController {
 
 	    $customer = Customer::where('website',$request->get('email'))->first();
 
-	    if(is_countable($customer) {
+	    if(is_countable($customer)) {
 			if (count($customer) <= 0){
 				$cust = new Customer();
 				$name = $request->get('client_name');
