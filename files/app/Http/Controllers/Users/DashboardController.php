@@ -266,7 +266,7 @@ class DashboardController extends UserController
                         'updated_at' => $history->updated_at,
                         'time_diff' =>$date,
                         'priority' => $leads->priority,
-                        'location' => $leads->locationTrashed,//->name,
+                        'location' => $leads->location_trashed->name,
                         'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
                     ];
                 }
@@ -293,7 +293,7 @@ class DashboardController extends UserController
                 'new_value' =>'',
                 'time_diff' =>$date,
                 'priority' => $leads->priority,
-                'location' => $leads->locationTrashed,//->name,
+                'location' => $leads->locationTrashed->name,
                 'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
             ];
         }

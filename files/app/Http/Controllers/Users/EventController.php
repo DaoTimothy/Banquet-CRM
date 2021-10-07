@@ -125,7 +125,7 @@ class EventController extends UserController
         $title = trans('Event Overview');
         $title2 = trans('Event List');
         
-        $event = array();/*$this->eventRepository->getAll()
+        $event = $this->eventRepository->getAll()
             ->with('booking', 'owner_trashed', 'booking.location_trashed', 'logistics','contactus.event_type_trashed','lead')
             ->where(function($query){
                 if(!Sentinel::inRole('admin')){
@@ -135,7 +135,7 @@ class EventController extends UserController
             ->get()
             ->groupBy('status')
             ->toArray();
-        */
+        
 
         foreach ($event as $key => $value){
             foreach ($value as  $key2 => $events){
@@ -253,7 +253,7 @@ class EventController extends UserController
         $grand_total = 0;
 
         $customer = Customer::where('website',$request->get('client_email'))->first();
-        if(!count(array($customer)) > 0){
+        if(!count($customer) > 0){
             $cust = new Customer();
             $name = $request->get('booking');
             $name = explode(" ",$name);

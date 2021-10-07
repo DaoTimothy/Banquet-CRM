@@ -121,17 +121,21 @@ class LeadController extends UserController {
 	public function store( LeadRequest $request ) {
 
 	    $customer = Customer::where('website',$request->get('email'))->first();
-	    //if(!count($customer) > 0){
-             $cust = new Customer();
-             $name = $request->get('client_name');
-             $name = explode(" ",$name);
-             $customer_data['first_name'] = (isset($name[0])) ? $name[0] : '';
-             $customer_data['last_name'] = (isset($name[1])) ? $name[1] : '';
-             $customer_data['website'] = $request->get('email');
-             $customer_data['mobile'] = $request->get('mobile');
-             $customer_data['company_id'] = $request->get('company_name');
-             $cust->create($customer_data);
-        //}
+
+	    if(is_countable($customer) {
+			if (count($customer) <= 0){
+				$cust = new Customer();
+				$name = $request->get('client_name');
+				$name = explode(" ",$name);
+				$customer_data['first_name'] = (isset($name[0])) ? $name[0] : '';
+				$customer_data['last_name'] = (isset($name[1])) ? $name[1] : '';
+				$customer_data['website'] = $request->get('email');
+				$customer_data['mobile'] = $request->get('mobile');
+				$customer_data['company_id'] = $request->get('company_name');
+				$cust->create($customer_data);
+		   }
+		}
+		
 		$this->leadRepository->store( $request->all() );
 
 		return redirect( "lead" );
