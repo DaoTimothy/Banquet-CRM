@@ -107,13 +107,12 @@ class CustomerController extends UserController
                 ];
             })->values();
 
-        $customers = array(); /* $this->userRepository->getAll()
+        $customers = $this->userRepository->getAll()
             ->with('customer.company')
             ->get()
             ->filter(function ($user) {
                 return $user->inRole('customer', 'companies');
             });
-            */
 //        return $customers;
 //        $customers = Customer::all();
 

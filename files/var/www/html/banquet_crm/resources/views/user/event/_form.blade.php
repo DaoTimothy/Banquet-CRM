@@ -1131,7 +1131,7 @@
                                 {!! Form::label('mr_tea_start_time', trans('event.morningTeaCoffee'), ['class' => 'control-label required']) !!}
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">{{trans('event.from')}}</span>
-                                    {!! Form::text('mr_tea_start_time', (isset($mrt) ? (is_array($mrt) ? $mrt[0] : '') :null), ['class' => 'form-control',"id"=>"mr_tea_start_time","placeholder"=>"Select Lunch Start Time"]) !!}
+                                    {!! Form::text('mr_tea_start_time', (isset($mrt) ? (is_array($mrt) ? $mrt[0] : '') :null), ['class' => 'form-control',"id"=>"mr_tea_start_time","placeholder"=>"Select Morning Tea Start Time"]) !!}
                                 </div>
                                 <span class="help-block">{{ $errors->first('mr_tea_start_time', ':message') }}</span>
                             </div>
@@ -1141,7 +1141,7 @@
                                 {!! Form::label('', null, ['class' => 'control-label']) !!}
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">{{trans('event.to')}}</span>
-                                    {!! Form::text('mr_tea_end_time', (isset($mrt) ? (is_array($mrt) ? $mrt[1] : '') :null), ['class' => 'form-control',"id"=>"mr_tea_end_time","placeholder"=>"Select Lunch End Time"]) !!}
+                                    {!! Form::text('mr_tea_end_time', (isset($mrt) ? (is_array($mrt) ? $mrt[1] : '') :null), ['class' => 'form-control',"id"=>"mr_tea_end_time","placeholder"=>"Select Morning Tea End Time"]) !!}
                                 </div>
                                 <span class="help-block">{{ $errors->first('mr_tea_end_time', ':message') }}</span>
                             </div>
@@ -1183,7 +1183,7 @@
                                 {!! Form::label('af_tea_start_time', trans('event.afternoonTeaCoffee'), ['class' => 'control-label required']) !!}
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">{{trans('event.from')}}</span>
-                                    {!! Form::text('af_tea_start_time', (isset($evt) ? (is_array($evt) ? $evt[0] : '') :null), ['class' => 'form-control',"id"=>"af_tea_start_time","placeholder"=>"Select Lunch Start Time"]) !!}
+                                    {!! Form::text('af_tea_start_time', (isset($evt) ? (is_array($evt) ? $evt[0] : '') :null), ['class' => 'form-control',"id"=>"af_tea_start_time","placeholder"=>"Select Afternoon Tea Start Time"]) !!}
                                 </div>
                                 <span class="help-block">{{ $errors->first('af_tea_start_time', ':message') }}</span>
                             </div>
@@ -1193,7 +1193,7 @@
                                 {!! Form::label('', null, ['class' => 'control-label']) !!}
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">{{trans('event.to')}}</span>
-                                    {!! Form::text('af_tea_end_time', (isset($evt) ? (is_array($evt) ? $evt[1] : '') :null), ['class' => 'form-control',"id"=>"af_tea_end_time","placeholder"=>"Select Lunch End Time"]) !!}
+                                    {!! Form::text('af_tea_end_time', (isset($evt) ? (is_array($evt) ? $evt[1] : '') :null), ['class' => 'form-control',"id"=>"af_tea_end_time","placeholder"=>"Select Afternoon Tea End Time"]) !!}
                                 </div>
                                 <span class="help-block">{{ $errors->first('af_tea_end_time', ':message') }}</span>
                             </div>
@@ -1210,7 +1210,7 @@
                                 {!! Form::label('evening_start_time', trans('event.eveningSnacks'), ['class' => 'control-label required']) !!}
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">{{trans('event.from')}}</span>
-                                    {!! Form::text('evening_start_time', (isset($evs) ? (is_array($evs) ? $evs[0] : '') :null), ['class' => 'form-control',"id"=>"evening_start_time","placeholder"=>"Select Lunch Start Time"]) !!}
+                                    {!! Form::text('evening_start_time', (isset($evs) ? (is_array($evs) ? $evs[0] : '') :null), ['class' => 'form-control',"id"=>"evening_start_time","placeholder"=>"Select Evening Snacks Start Time"]) !!}
                                 </div>
                                 <span class="help-block">{{ $errors->first('evening_start_time', ':message') }}</span>
                             </div>
@@ -1220,7 +1220,7 @@
                                 {!! Form::label('', null, ['class' => 'control-label']) !!}
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">{{trans('event.to')}}</span>
-                                    {!! Form::text('evening_end_time', (isset($evs) ? (is_array($evs) ? $evs[1] : '') :null), ['class' => 'form-control',"id"=>"evening_end_time","placeholder"=>"Select Lunch End Time"]) !!}
+                                    {!! Form::text('evening_end_time', (isset($evs) ? (is_array($evs) ? $evs[1] : '') :null), ['class' => 'form-control',"id"=>"evening_end_time","placeholder"=>"Select Evening Snacks End Time"]) !!}
                                 </div>
                                 <span class="help-block">{{ $errors->first('evening_end_time', ':message') }}</span>
                             </div>
@@ -1235,7 +1235,7 @@
                                 {!! Form::label('dinner_start_time', trans('event.dinner'), ['class' => 'control-label required']) !!}
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">{{trans('event.from')}}</span>
-                                    {!! Form::text('dinner_start_time', (isset($dt) ? (is_array($dt) ? $dt[0] : '') :null), ['class' => 'form-control',"id"=>"dinner_start_time","placeholder"=>"Select Lunch Start Time"]) !!}
+                                    {!! Form::text('dinner_start_time', (isset($dt) ? (is_array($dt) ? $dt[0] : '') :null), ['class' => 'form-control',"id"=>"dinner_start_time","placeholder"=>"Select Dinner Start Time"]) !!}
                                 </div>
                                 <span class="help-block">{{ $errors->first('dinner_start_time', ':message') }}</span>
                             </div>
@@ -1245,7 +1245,7 @@
                                 {!! Form::label('', null, ['class' => 'control-label']) !!}
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">{{trans('event.to')}}</span>
-                                    {!! Form::text('dinner_end_time', (isset($dt) ? (is_array($dt) ? $dt[1] : '') :null), ['class' => 'form-control',"id"=>"dinner_end_time","placeholder"=>"Select Lunch End Time"]) !!}
+                                    {!! Form::text('dinner_end_time', (isset($dt) ? (is_array($dt) ? $dt[1] : '') :null), ['class' => 'form-control',"id"=>"dinner_end_time","placeholder"=>"Select Dinner End Time"]) !!}
                                 </div>
                                 <span class="help-block">{{ $errors->first('dinner_end_time', ':message') }}</span>
                             </div>

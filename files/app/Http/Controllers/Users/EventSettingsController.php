@@ -448,7 +448,7 @@ class EventSettingsController extends UserController
         $data->save();
 
         $count = $eventSettings->get("supplierPackages");
-        foreach (explode(",", $count) as $key => $vaue) {
+        foreach (explode(",", $count) as $key => $value) {
             $eventSupplier = new SupplierPackage();
             $eventSupplier->supplier_id = $data->id;
             $eventSupplier->supplier_type = 'caterer';
@@ -478,7 +478,12 @@ class EventSettingsController extends UserController
         $data->address = $eventSettings->get("address");
         $data->email = $eventSettings->get("email");
         $data->phone = $eventSettings->get("phone");
-        $data->price = $eventSettings->get("price");
+        $count = $eventSettings->get("supplierPackages");
+        foreach (explode(",", $count) as $key => $value) {
+            if ($eventSettings->has("package_name_" . $value)) {
+                $data->price = $eventSettings->get("package_price_" . $value);
+            }
+        }
         $data->miscellaneous_contract_terms = $eventSettings->get('miscellaneous_contract_terms');
         $data->miscellaneous_payment = $eventSettings->get('miscellaneous_payment');
         $data->miscellaneous_arrangements = $eventSettings->get('miscellaneous_arrangements');
@@ -512,7 +517,12 @@ class EventSettingsController extends UserController
     {
         $data = new Entertainment();
         $data->name = $eventSettings->get('name');
-        $data->price = $eventSettings->get("price");
+        $count = $eventSettings->get("supplierPackages");
+        foreach (explode(",", $count) as $key => $value) {
+            if ($eventSettings->has("package_name_" . $value)) {
+                $data->price = $eventSettings->get("package_price_" . $value);
+            }
+        }
         $data->address = $eventSettings->get("address");
         $data->email = $eventSettings->get("email");
         $data->phone = $eventSettings->get("phone");
@@ -594,7 +604,7 @@ class EventSettingsController extends UserController
     {
         $data = new Photographers();
         $data->name = $eventSettings->get("name");
-        
+        $count = $eventSettings->get("supplierPackages");
         foreach (explode(",", $count) as $key => $value) {
             if ($eventSettings->has("package_name_" . $value)) {
                 $data->price = $eventSettings->get("package_price_" . $value);
@@ -1196,11 +1206,14 @@ class EventSettingsController extends UserController
     {
         $title = trans('Contract Agreement & Banquet Policies');
         $eventTerms = EventTerms::first();
-        if (count($eventTerms) > 0) {
-            return view('user.eventSetting.agreementPoliciesIndex', compact('title', 'eventTerms'));
+        if (is_countable($eventTerms)) {
+            if (count($eventTerms) > 0) {
+                return view('user.eventSetting.agreementPoliciesIndex', compact('title', 'eventTerms'));
+            } 
         } else {
             return view('user.eventSetting.agreementPoliciesIndex', compact('title'));
         }
+        
 
     }
 
