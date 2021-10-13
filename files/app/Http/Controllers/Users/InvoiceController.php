@@ -485,10 +485,10 @@ class InvoiceController extends UserController
 				->pluck('full_name', 'id')
 				->prepend(trans('dashboard.select_customer'), '');
 		
-		$open_invoice_total = 0; //round(EventPayments::whereHas('event')->where('status','New')->get()->sum('amount'),3);
-		$overdue_invoices_total = 0; //round(EventFinancials::whereHas('event')->get()->sum('grand_total') - EventPayments::whereHas('event')->where('status','Paid')->get()->sum('amount'), 3);
-        $paid_invoices_total = 0; //round(EventPayments::whereHas('event')->where('status','Paid')->get()->sum('amount'),3);
-		$invoices_total_collection = 0; //round(EventFinancials::whereHas('event')->get()->sum('grand_total'), 3);
+		$open_invoice_total = round(EventPayments::whereHas('event')->where('status','New')->get()->sum('amount'),3);
+		$overdue_invoices_total = round(EventFinancials::whereHas('event')->get()->sum('grand_total') - EventPayments::whereHas('event')->where('status','Paid')->get()->sum('amount'), 3);
+        $paid_invoices_total = round(EventPayments::whereHas('event')->where('status','Paid')->get()->sum('amount'),3);
+		$invoices_total_collection = round(EventFinancials::whereHas('event')->get()->sum('grand_total'), 3);
 		
 
 		$payment_methods = $this->optionRepository->getAll()
@@ -542,14 +542,14 @@ class InvoiceController extends UserController
 
 		$month_overdue = round($this->invoiceRepository->getAllOverdueMonth()->sum('unpaid_amount'), 3);
 		$month_paid = round($this->invoiceRepository->getAllPaidMonth()->sum('final_price'), 3);
-		$month_open = 0; //round($this->invoiceRepository->getAllOpenMonth()->sum('final_price'), 3);
+		$month_open = round($this->invoiceRepository->getAllOpenMonth()->sum('final_price'), 3);
 		
-		$companies_mail = 0; /*$this->userRepository->getAll()->get()->filter(
+		$companies_mail = $this->userRepository->getAll()->get()->filter(
 			function ($user) {
 				return $user->inRole('customer');
 			}
 		)->pluck('full_name', 'id');
-		*/
+		
 
 		view()->share('payment_term', $payment_term);
 		view()->share('customers', $customers);

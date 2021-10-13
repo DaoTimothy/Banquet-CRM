@@ -60,7 +60,7 @@
                         {!! Form::label('subMenu', trans('eventSetting.subMenu'), ['class' => 'control-label required']) !!}
                         <div class="controls">
                             {!! Form::select('subMenu',[], (isset($event) ? $event->booking->location_id : null), ['id'=>'subMenu', 'class' => 'form-control select2','onchange'=>'filter(this.options[this.selectedIndex].value)']) !!}
-                            <span class="help-block">{{ $errors->first('subMenu', ':message') }}</span>
+                            <span class="help-block">{{ $errors->first('menu', ':message') }}</span>
                         </div>
                     </div>
                 </div>
