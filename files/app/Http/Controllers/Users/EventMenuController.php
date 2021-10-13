@@ -346,6 +346,7 @@ class EventMenuController extends UserController {
     {
         $title = trans( 'Menu Item' );
         $main_menu = MainMenu::get()->pluck("name",'id')->prepend(trans("eventSetting.all"),'0');
+        //NEED TO FIX
         $menus = MenuType::get()->pluck("name");
         $menu_item = 0;
         $sub_menu = SubMenu::get()->pluck("name");

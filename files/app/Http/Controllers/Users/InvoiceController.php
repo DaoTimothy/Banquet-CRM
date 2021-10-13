@@ -340,7 +340,12 @@ class InvoiceController extends UserController
                 if($data->financials){
                     $c = Salesteam::where('id',$data->sales_team_id)->first();
                     $grand_total = $data->financials->grand_total;
-                    $commision = (count($c) > 0) ? ($grand_total * $c->commision) / 100 : 0;
+					if (is_countable($c)) {
+						$commision = (count($c) > 0) ? ($grand_total * $c->commision) / 100 : 0;
+					} else {
+						$commision = 0;
+					}
+                    
                     $profit = $grand_total - $commision;
 //                    $profit = $data->financials->grand_total - $profit;
                 }else{
