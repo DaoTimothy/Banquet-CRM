@@ -226,7 +226,7 @@ class DashboardController extends UserController
                         'year' =>Carbon::now()->subDay($i)->format('d'),
                         'sale'=>Saleorder::where(\DB::raw('DATE(created_at)'), Carbon::now()->subDay($i)->format('Y-m-d'))->count());
             }
-
+            //TIMOTHY DAO
             return view('user.index', compact('customers', 'contracts', 'event_count','products',
                 'customers_world', 'customers_usa','event_leads',/*'stages'*/0,'decorator','entertainer','activity',
                 'photo','caterer','miscellaneous','transport','today_event','leads_chart','event_chart','sale_chart','saleOrders','today_leads'));
@@ -236,7 +236,6 @@ class DashboardController extends UserController
     function getActivity(){
         $lead_history = Lead::with('user','eventTypeTrashed','locationTrashed')->get();
         $event_history = Event::with('user','booking','contactus.event_type_trashed','booking.location_trashed')->get();
-
         $data = [];
         foreach ($lead_history as $key => $leads){
             if(count($leads->revisionHistory) > 0){
@@ -266,7 +265,7 @@ class DashboardController extends UserController
                         'updated_at' => $history->updated_at,
                         'time_diff' =>$date,
                         'priority' => $leads->priority,
-                        'location' => $leads->location_trashed,//->name,
+                        'location' => $leads->locationTrashed->name,
                         'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
                     ];
                 }
@@ -293,7 +292,7 @@ class DashboardController extends UserController
                 'new_value' =>'',
                 'time_diff' =>$date,
                 'priority' => $leads->priority,
-                'location' => $leads->locationTrashed,//->name,
+                'location' => $leads->locationTrashed->name,
                 'event_type' => ($leads->eventTypeTrashed) ? $leads->eventTypeTrashed->name : ''
             ];
         }
@@ -349,14 +348,14 @@ class DashboardController extends UserController
                 'user' => ($events->user) ? $events->user->first_name .' '. $events->user->last_name : '',
                 'user_id' => ($events->user) ? $events->user->id : '',
                 'key' => '',
-                'client' => $events->booking,//->booking_name,
+                'client' => $events->booking->booking_name,
                 'status' => 'created',
                 'updated_at' => $events->created_at,
                 'old_value' =>'',
                 'new_value' =>'',
                 'time_diff' => $date,
                 'priority' => $events->status,
-                'location' => $events->booking,//->location_trashed->name,
+                'location' => $events->booking->location_trashed->name,
                 'event_type' => $events->contactus->event_type_trashed->name
             ];
         }
