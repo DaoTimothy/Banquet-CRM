@@ -600,18 +600,19 @@ class EventController extends UserController
         $grand_total = 0;
 
         $customer = Customer::where('website',$request->get('client_email'))->first();
-        if(!count($customer) > 0){
-            $cust = new Customer();
-            $name = $request->get('booking');
-            $name = explode(" ",$name);
-            $customer_data['first_name'] = (isset($name[0])) ? $name[0] : '';
-            $customer_data['last_name'] = (isset($name[1])) ? $name[1] : '';
-            $customer_data['website'] = $request->get('client_email');
-            $customer_data['mobile'] = $request->get('client_phone');
-            $customer_data['company_id'] = $request->get('client_company');
-            $cust->create($customer_data);
+        if (is_countable($customer)) {
+            if(!count($customer) > 0){
+                $cust = new Customer();
+                $name = $request->get('booking');
+                $name = explode(" ",$name);
+                $customer_data['first_name'] = (isset($name[0])) ? $name[0] : '';
+                $customer_data['last_name'] = (isset($name[1])) ? $name[1] : '';
+                $customer_data['website'] = $request->get('client_email');
+                $customer_data['mobile'] = $request->get('client_phone');
+                $customer_data['company_id'] = $request->get('client_company');
+                $cust->create($customer_data);
+            }
         }
-
         $event_details = Event::find($event->id);
         $event_details->owner_id = $request->get("owner");
         $event_details->sales_team_id = $request->get("salesteam");
