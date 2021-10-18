@@ -378,12 +378,18 @@ class EventController extends UserController
             $eating_time['event_id'] = $event_id;
             $eating_time['service_time'] = $request->get('service_time');
             $eating_time['canapes'] = $request->get('canapes');
-            $eating_time['morning_tea_time'] = $request->get('mr_tea_start_time') . '_' . $request->get('mr_tea_end_time');
-            $eating_time['morning_snacks_time'] = $request->get('morning_start_time') . '_' . $request->get('morning_end_time');
-            $eating_time['lunch_time'] = $request->get('lunch_start_time') . '_' . $request->get('lunch_end_time');
-            $eating_time['evening_tea_time'] = $request->get('af_tea_start_time') . '_' . $request->get('af_tea_end_time');
-            $eating_time['evening_snacks_time'] = $request->get('evening_start_time') . '_' . $request->get('evening_end_time');
-            $eating_time['dinner_time'] = $request->get('dinner_start_time') . '_' . $request->get('dinner_end_time');
+            $eating_time['morning_tea_time'] = $request->get('mr_tea_start_time');
+            $eating_time['morning_tea_time_end'] = $request->get('mr_tea_end_time');
+            $eating_time['morning_snacks_time'] = $request->get('morning_start_time');
+            $eating_time['morning_snacks_time_end'] = $request->get('morning_end_time');
+            $eating_time['lunch_time'] = $request->get('lunch_start_time');
+            $eating_time['lunch_time_end'] = $request->get('lunch_end_time');
+            $eating_time['evening_tea_time'] = $request->get('af_tea_start_time');
+            $eating_time['evening_tea_time_end'] = $request->get('af_tea_end_time');
+            $eating_time['evening_snacks_time'] = $request->get('evening_start_time');
+            $eating_time['evening_snacks_time_end'] = $request->get('evening_end_time');
+            $eating_time['dinner_time'] = $request->get('dinner_start_time');
+            $eating_time['dinner_time_end'] = $request->get('dinner_end_time');
         } else {
             $eating_time['event_id'] = $event_id;
         }
@@ -659,16 +665,19 @@ class EventController extends UserController
 
 
             $pay = EventPayments::where('event_id',$event_id)->where('customer_facing_title','Deposit 2')->where('internal_note','Second Deposit Payment')->first();
-            if(!count($pay) > 0){
-                $payment2['amount'] = $request->get('2nd_deposit');
-                $payment2['due_date'] = $request->get('deposit_2_date');
-                $payment2['customer_facing_title'] = 'Deposit 2';
-                $payment2['internal_note'] = 'Second Deposit Payment';
-                $payment2['event_id'] = $event_id;
-
-                $payment_data2 = new EventPayments();
-                $payment_data2->create($payment2);
+            if (is_countable($pay)) {
+                if(!count($pay) > 0){
+                    $payment2['amount'] = $request->get('2nd_deposit');
+                    $payment2['due_date'] = $request->get('deposit_2_date');
+                    $payment2['customer_facing_title'] = 'Deposit 2';
+                    $payment2['internal_note'] = 'Second Deposit Payment';
+                    $payment2['event_id'] = $event_id;
+    
+                    $payment_data2 = new EventPayments();
+                    $payment_data2->create($payment2);
+                }
             }
+            
         }
 
 
