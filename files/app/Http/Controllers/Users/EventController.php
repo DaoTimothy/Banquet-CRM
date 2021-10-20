@@ -696,7 +696,7 @@ class EventController extends UserController
             $count = $request->get("menuCount");
             $eating_menu['caterer_id'] = $request->get("caterers");
             $cat = EventCaterers::where('id',$request->get("caterers"))->first();
-            $grand_total = $grand_total + $cat->price;
+            $grand_total = $grand_total + ($cat == null)? 0 : $cat->price;
             $eating_menu['service_type_id'] = $request->get("service_type");
             $eating_menu['counters'] = $request->get("counter");
             $eating_menu['head_table'] = ($request->get("head_table") ? $request->get("head_table_count") : 0);
@@ -866,17 +866,19 @@ class EventController extends UserController
             $finacials->save();
 
             $pay2 = EventPayments::where('event_id',$event_id)->where('customer_facing_title','Deposit 1')->where('internal_note','First Deposit Payment')->first();
-            if(!count($pay2) > 0){
-                $payment['amount'] = $request->get('deposit_amounts');
-                $payment['due_date'] = date('Y-m-d');
-                $payment['customer_facing_title'] = 'Deposit 1';
-                $payment['internal_note'] = 'First Deposit Payment';
-                $payment['event_id'] = $event_id;
-                $payment['payment_method'] = $request->get('deposit_types');
-                $payment['status'] = 'Paid';
+            if (is_countable($pay2)) {
+                if(!count($pay2) > 0){
+                    $payment['amount'] = $request->get('deposit_amounts');
+                    $payment['due_date'] = date('Y-m-d');
+                    $payment['customer_facing_title'] = 'Deposit 1';
+                    $payment['internal_note'] = 'First Deposit Payment';
+                    $payment['event_id'] = $event_id;
+                    $payment['payment_method'] = $request->get('deposit_types');
+                    $payment['status'] = 'Paid';
 
-                $payment_data = new EventPayments();
-                $payment_data->create($payment);
+                    $payment_data = new EventPayments();
+                    $payment_data->create($payment);
+                }
             }
         }
 
@@ -1143,7 +1145,7 @@ class EventController extends UserController
 
     public function data(Datatables $datatables)
     {
-        /*if(!Sentinel::inRole('admin')){
+        if(!Sentinel::inRole('admin')){
             $event = $this->eventRepository->getAll()
                 ->with('booking', 'contacts', 'owner_trashed', 'booking.location_trashed', 'logistics','contactus')
                 ->get()
@@ -1167,7 +1169,7 @@ class EventController extends UserController
                         'status' => $event->status,
                     ];
                 });
-        }else{ */
+        }else{
             $event = $this->eventRepository->getAll()
                 ->with('booking', 'contacts', 'owner_trashed', 'booking.location_trashed', 'logistics')
                 ->where('owner_id',Sentinel::getUser()->id)
@@ -1191,7 +1193,7 @@ class EventController extends UserController
                         'status' => $event->status,
                     ];
                 });
-        //}
+    }
 
         return $datatables->collection($event)
             ->addColumn('Actions', '@if(Sentinel::getUser()->hasAccess([\'event.write\']) || Sentinel::inRole(\'admin\'))
