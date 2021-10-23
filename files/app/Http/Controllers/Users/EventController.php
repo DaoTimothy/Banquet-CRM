@@ -892,7 +892,7 @@ class EventController extends UserController
         $result = '';
         foreach($temp as $t)
             $result .= $t[0];
-        $title = ucwords($event->contactus->event_type_trashed->name) . ' :- ' . $result .'_Event_' . str_replace("-",'',date('d-m-Y',strtotime($event->booking->from_date))) . '' . str_replace(":",'',str_replace( "pm",'',str_replace("am",'',$event->start_time)));
+        $title = ucwords($event->contactus->event_type_trashed->name) . ' : ' . ucwords($event->name) . ' - ' . $result .'_Event_' . str_replace("-",'',date('d-m-Y',strtotime($event->booking->from_date))) . '' . str_replace(":",'',str_replace( "pm",'',str_replace("am",'',$event->start_time)));
         $this->generateShowParams($event->id);
         return view('user.event.show', compact('title'));
     }
