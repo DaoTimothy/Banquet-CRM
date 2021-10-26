@@ -344,8 +344,7 @@ class InvoiceController extends UserController
 						$commision = (count($c) > 0) ? ($grand_total * $c->commision) / 100 : 0;
 					} else {
 						$commision = 0;
-					}
-                    
+					}                    
                     $profit = $grand_total - $commision;
 //                    $profit = $data->financials->grand_total - $profit;
                 }else{
@@ -362,8 +361,8 @@ class InvoiceController extends UserController
                     'event_name' => $final_name,
                     'sales_team' => ($data->sales_team_id_trashed) ? $data->sales_team_id_trashed->salesteam : '',
                     'owner' => ($data->owner_trashed) ? $data->owner_trashed->first_name.' ' .$data->owner_trashed->first_name  : '',
-					'commission' => is_countable($c)? ((count($c) > 0) ? $c->commision .'%' : 0) : 0,
-                    'due_date' => ($data->deposit) ? date('D d,Y',strtotime($data->deposit->deposit_due)) : '',
+					'commission' => (isset($c) && is_countable($c))? ((count($c) > 0) ? $c->commision .'%' : 0) : 0,
+                    'due_date' => ($data->deposit) ? date('D d, Y',strtotime($data->deposit->deposit_due)) : '',
                     'total' => ($data->financials) ? ($data->financials->grand_total == 0 || $data->financials->grand_total == NULL) ? 0 : $data->financials->grand_total : 0,
                     'unpaid' => ($data->financials) ? ($data->financials->amount_due == 0 || $data->financials->amount_due == NULL) ? 0 : $data->financials->amount_due : 0,
                     'profit' => ceil($profit),

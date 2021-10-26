@@ -46,7 +46,6 @@ class BookingReportController extends UserController {
         if($filter == 'year'){
             $where = [date('Y-m-d',strtotime("-1year")),date('Y-m-d')];
         }
-
         $event_report_data = EventBooking::with('event.contactus')->whereHas('event')->whereBetween(\DB::raw('DATE(created_at)'),$where)->get()
             ->map(function($data){
                 $temp = explode(' ', ucwords($data->event->contactus->event_type_trashed->name));

@@ -13,7 +13,7 @@ class EventFinancials extends Model
     protected $connection = 'mysql2';
     protected $dates = ['deleted_at'];
     protected $guarded = ['id'];
-    protected $table = 'finacials';
+    protected $table = 'financials';
 
     public function event()
     {

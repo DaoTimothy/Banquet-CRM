@@ -502,15 +502,15 @@ class EventController extends UserController
             $actual_amount = $grand_total;
             $sales_tax = ($grand_total * Settings::get('sales_tax')) / 100;
             $grand_total = $grand_total + $sales_tax;
-            $finacials['event_id'] = $event_id;
-            $finacials['food_beverage_min'] = $request->get('food_beverage_min');
-            $finacials['grand_total'] = $grand_total;
-            $finacials['rental_fee'] = $request->get('rental_fee');
-            $finacials['amount_due'] = $grand_total - $request->get('deposit_amounts');
-            $finacials['deposit_amount'] = $request->get('deposit_amounts');
-//            $finacials['price_per_persons'] = $request->get('price_per_amount');
-            $finacials['actual_amount'] = $actual_amount;
-            $finacials['deposit_type'] = $request->get('deposit_types');
+            $financials['event_id'] = $event_id;
+            $financials['food_beverage_min'] = $request->get('food_beverage_min');
+            $financials['grand_total'] = $grand_total;
+            $financials['rental_fee'] = $request->get('rental_fee');
+            $financials['amount_due'] = $grand_total - $request->get('deposit_amounts');
+            $financials['deposit_amount'] = $request->get('deposit_amounts');
+//            $financials['price_per_persons'] = $request->get('price_per_amount');
+            $financials['actual_amount'] = $actual_amount;
+            $financials['deposit_type'] = $request->get('deposit_types');
 
             $payment['amount'] = $request->get('deposit_amounts');
             $payment['due_date'] = date('Y-m-d');
@@ -526,12 +526,12 @@ class EventController extends UserController
             $actual_amount = $grand_total;
             $sales_tax = ($grand_total * Settings::get('sales_tax')) / 100;
             $grand_total = $grand_total + $sales_tax;
-            $finacials['event_id'] = $event_id;
-            $finacials['grand_total'] = $grand_total;
-            $finacials['actual_amount'] = $actual_amount;
+            $financials['event_id'] = $event_id;
+            $financials['grand_total'] = $grand_total;
+            $financials['actual_amount'] = $actual_amount;
         }
-        $finacials_data = new EventFinancials();
-        $finacials_data->create($finacials);
+        $financials_data = new EventFinancials();
+        $financials_data->create($financials);
 
         if($request->has('lead_data')){
             $lead = Lead::find($request->get('lead_data'));
@@ -854,16 +854,16 @@ class EventController extends UserController
             $actual_amount = $grand_total;
             $sales_tax = ($grand_total * Settings::get('sales_tax')) / 100;
             $grand_total = $grand_total + $sales_tax;
-            $finacials = EventFinancials::where('event_id', $event_id)->first();
-            $finacials->food_beverage_min = $request->get('food_beverage_min');
-            $finacials->grand_total = ceil($grand_total);
-            $finacials->rental_fee = $request->get('rental_fee');
-            $finacials->amount_due = ceil($grand_total - $request->get('deposit_amounts'));
-            $finacials->deposit_amount = $request->get('deposit_amounts');
-            $finacials->price_per_persons = $request->get('price_per_amount');
-            $finacials->actual_amount = ceil($actual_amount);
-            $finacials->deposit_type = $request->get('deposit_types');
-            $finacials->save();
+            $financials = EventFinancials::where('event_id', $event_id)->first();
+            $financials->food_beverage_min = $request->get('food_beverage_min');
+            $financials->grand_total = ceil($grand_total);
+            $financials->rental_fee = $request->get('rental_fee');
+            $financials->amount_due = ceil($grand_total - $request->get('deposit_amounts'));
+            $financials->deposit_amount = $request->get('deposit_amounts');
+            $financials->price_per_persons = $request->get('price_per_amount');
+            $financials->actual_amount = ceil($actual_amount);
+            $financials->deposit_type = $request->get('deposit_types');
+            $financials->save();
 
             $pay2 = EventPayments::where('event_id',$event_id)->where('customer_facing_title','Deposit 1')->where('internal_note','First Deposit Payment')->first();
             if (is_countable($pay2)) {

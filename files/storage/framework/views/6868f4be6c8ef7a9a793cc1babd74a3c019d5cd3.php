@@ -195,7 +195,7 @@
                                         </div>
                                     </div>
 
-                                    <h3><b>Finacials</b></h3>
+                                    <h3><b>Financials</b></h3>
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6">
