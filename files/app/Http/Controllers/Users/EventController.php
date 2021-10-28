@@ -126,7 +126,7 @@ class EventController extends UserController
         $title2 = trans('Event List');
         
         $event = $this->eventRepository->getAll()
-            ->with('booking', 'owner_trashed', 'booking.location_trashed', 'logistics','contactus.event_type_trashed','lead')
+            ->with('booking', 'owner_trashed', 'booking', 'logistics','contactus.event_type_trashed','lead')
             ->where(function($query){
                 if(!Sentinel::inRole('admin')){
                     $query->where('owner_id',Sentinel::getUser()->id);

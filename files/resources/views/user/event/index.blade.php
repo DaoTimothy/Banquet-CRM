@@ -71,7 +71,7 @@
                                 <p>Event name : {{$final_name}}</p>
                                 <p>Email : {{($events['booking']['client_email'] != NULL) ? $events['booking']['client_email'] : $events['lead']['email']}}</p>
                                 <p>Mobile : {{($events['booking']['client_phone'] != NULL) ? $events['booking']['client_phone'] : $events['lead']['mobile']}}</p>
-                                <P>Start Date : {{$events['lead']['event_date']}}</P>
+                                <P>Start Date : {{$events['booking']['from_date']}}</P>
                                 <div class="remaining_box">
                                     <p aria-hidden="true" data-toggle="collapse" data-target="#remaining{{$events['id']}}">Remaining... <i class="fa fa-caret-down"></i></p>
                                     <div id="remaining{{$events['id']}}" class="collapse remaining_select">
@@ -143,7 +143,7 @@
                                 <p>Event name : {{$final_name}}</p>
                                 <p>Email : {{($events['booking']['client_email'] != NULL) ? $events['booking']['client_email'] : $events['lead']['email']}}</p>
                                 <p>Mobile : {{($events['booking']['client_phone'] != NULL) ? $events['booking']['client_phone'] : $events['lead']['mobile']}}</p>
-                                <P>Start Date : {{$events['lead']['event_date']}}</P>
+                                <P>Start Date : {{$events['booking']['from_date']}}</P>
                                 <div class="remaining_box">
                                     <p aria-hidden="true" data-toggle="collapse" data-target="#remaining{{$events['id']}}">Remaining... <i class="fa fa-caret-down"></i></p>
                                     <div id="remaining{{$events['id']}}" class="collapse remaining_select">
@@ -215,7 +215,7 @@
                                 <p>Event name : {{$final_name}}</p>
                                 <p>Email : {{($events['booking']['client_email'] != NULL) ? $events['booking']['client_email'] : $events['lead']['email']}}</p>
                                 <p>Mobile : {{($events['booking']['client_phone'] != NULL) ? $events['booking']['client_phone'] : $events['lead']['mobile']}}</p>
-                                <P>Start Date : {{$events['lead']['event_date']}}</P>
+                                <P>Start Date : {{$events['booking']['from_date']}}</P>
                                 <div class="remaining_box">
                                     <p aria-hidden="true" data-toggle="collapse" data-target="#remaining{{$events['id']}}">Remaining... <i class="fa fa-caret-down"></i></p>
                                     <div id="remaining{{$events['id']}}" class="collapse remaining_select">
@@ -286,7 +286,7 @@
                                 <p>Event name : {{$final_name}}</p>
                                 <p>Email : {{($events['booking']['client_email'] != NULL) ? $events['booking']['client_email'] : $events['lead']['email']}}</p>
                                 <p>Mobile : {{($events['booking']['client_phone'] != NULL) ? $events['booking']['client_phone'] : $events['lead']['mobile']}}</p>
-                                <P>Start Date : {{$events['lead']['event_date']}}</P>
+                                <P>Start Date : {{$events['booking']['from_date']}}</P>
                                 <div class="remaining_box">
                                     <p aria-hidden="true" data-toggle="collapse" data-target="#remaining{{$events['id']}}">Remaining... <i class="fa fa-caret-down"></i></p>
                                     <div id="remaining{{$events['id']}}" class="collapse remaining_select">
@@ -357,7 +357,7 @@
                                 <p>Event name : {{$final_name}}</p>
                                 <p>Email : {{($events['booking']['client_email'] != NULL) ? $events['booking']['client_email'] : $events['lead']['email']}}</p>
                                 <p>Mobile : {{($events['booking']['client_phone'] != NULL) ? $events['booking']['client_phone'] : $events['lead']['mobile']}}</p>
-                                <P>Start Date : {{$events['lead']['event_date']}}</P>
+                                <P>Start Date : {{$events['booking']['from_date']}}</P>
                                 <div class="remaining_box">
                                     <p aria-hidden="true" data-toggle="collapse" data-target="#remaining{{$events['id']}}">Remaining... <i class="fa fa-caret-down"></i></p>
                                     <div id="remaining{{$events['id']}}" class="collapse remaining_select">
