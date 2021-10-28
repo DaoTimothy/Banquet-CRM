@@ -80,10 +80,9 @@ class MeetingController extends UserController
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
         $title = trans('meeting.new');
-        //TIMOTHY DAO
-        $company_attendees = array();
+        $company_attendees = User::get()->pluck('full_name','id');
         $this->generateParams();
 
         return view('user.meeting.create', compact('title','company_attendees'));
@@ -100,8 +99,8 @@ class MeetingController extends UserController
     {
         $company_attendees = implode(',',$request->company_attendees);
         if(isset($request->staff_attendees)){
-            $staff_attendees = implode(',',$request->staff_attendees);
-            $request->merge(['staff_attendees'=>$staff_attendees]);
+            $staff_attenders = implode(',',$request->staff_attendees);
+            $request->merge(['staff_attendees'=>$staff_attenders]);
         }
         $request->merge(['company_attendees'=>$company_attendees]);
         $this->meetingRepository->create($request->all(), ['user_id' => $this->user->id]);
@@ -137,7 +136,7 @@ class MeetingController extends UserController
         $company_attendee = User::whereIn('id',$customers)->pluck('id','id')->all();
         $staff_attendees = explode(',', $meeting->staff_attendees);
         $staff_attendees = User::whereIn('id', $staff_attendees)->pluck('id', 'id')->all();
-        return view('user.meeting.create', compact('title', 'meeting', 'opportunity','staff_attendees','company_attendee','mainStaff'));
+        return view('user.meeting.create', compact('title', 'meeting','staff_attendees','company_attendee','mainStaff'));
     }
 
     /**
@@ -269,7 +268,7 @@ class MeetingController extends UserController
     public function calendar()
     {
         $title = trans('meeting.meetings');
-        return view('user.meeting.calendar', compact('title', 'opportunity'));
+        return view('user.meeting.calendar', compact('title'));
     }
 
     public function calendar_data()
