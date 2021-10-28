@@ -346,12 +346,9 @@ class EventMenuController extends UserController {
     {
         $title = trans( 'Menu Item' );
         $main_menu = MainMenu::get()->pluck("name",'id')->prepend(trans("eventSetting.all"),'0');
-        //TIMOTHY DAO
         $menus = MenuType::get()->pluck("name");
-        $menu_item = 0;
+        $menu_item = Menus::get()->pluck("name");
         $sub_menu = SubMenu::get()->pluck("name");
-        //dd($menus);
-        //dd($sub_menu);
         return view( 'user.eventMenu.menuItemIndex', compact( 'title','menus','main_menu','menu_item','sub_menu') );
     }
 
@@ -359,11 +356,10 @@ class EventMenuController extends UserController {
     public function menuItemCreate()
     {
         $title = trans( 'Menu Item' );
-        $main_menu = MainMenu::get()->pluck('name','id')->prepend(trans('eventSetting.select_menu'),'');$menus = MenuType::get()->pluck("name",'id')->prepend(trans("eventSetting.all"),'0');;
-        $menu_item = 0;
-        $sub_menu = SubMenu::get()->pluck("name")->prepend(trans("eventSetting.all"),'0');
-
-        return view( 'user.eventMenu.menuItemCreate', compact( 'title','menus','main_menu','menu_item','sub_menu') );
+        $main_menu = MainMenu::get()->pluck('name','id')->prepend(trans('eventSetting.select_menu'),'');
+        $menus = MenuType::get()->pluck("name");
+        $sub_menu = SubMenu::get()->pluck("name");
+        return view( 'user.eventMenu.menuItemCreate', compact( 'title','menus','main_menu','sub_menu') );
     }
 
     public function storeMenuItem(Request $request){

@@ -195,7 +195,7 @@
                 return;
             }
 
-            if ($("#sub_menu").val() == '' || $("#sub_menu").val() == 0) {
+            if ($("#sub_menu").val() == '') {
                 toastr["error"]("Select a Sub Menu");
                 event.preventDefault();
                 return;
