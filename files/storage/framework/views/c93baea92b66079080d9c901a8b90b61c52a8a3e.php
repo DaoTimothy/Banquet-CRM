@@ -404,66 +404,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                    <?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <tr role="row">
+                            <td><?php echo e($events['booking']['booking_name']); ?></td>
+                            <?php
+                                $temp = explode(' ', ucwords($events['contactus']['event_type_trashed']['name']));
+                                $result = '';
+                                foreach($temp as $t)
+                                    $result .= $t[0];
+                                $final_name = $result .'_Event_' . str_replace("-",'',date('d-m-Y',strtotime($events['booking']['from_date']))) . '' . str_replace(":",'',str_replace( "pm",'',str_replace("am",'',$events['start_time'])));
+                            ?>
+                            <td><?php echo e($final_name); ?></td>
+                            <?php
+                                dd($event['owner_trashed']);
+                            ?>
+                        
+                        </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
             </div>

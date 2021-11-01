@@ -404,66 +404,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{--<tr>--}}
-                    {{--<td>Smith Wedding</td>--}}
-                    {{--<td>Wedding</td>--}}
-                    {{--<td>John Deo</td>--}}
-                    {{--<td>12/03/2018 - 14/03/2018</td>--}}
-                    {{--<td>9.00 pm- 12:00 pm</td>--}}
-                    {{--<td>Room A</td>--}}
-                    {{--<td>123 6th St. Melbourne,FL 32904</td>--}}
-                    {{--<td>(125)5464478</td>--}}
-                    {{--<td>--}}
-                    {{--<a href="{{ $type.'/create' }}" title="{{ trans('table.edit') }}"><i class="fa fa-fw fa-pencil text-warning"></i> </a>--}}
-                    {{--<a href="{{ url('event/' . 1 . '/show' ) }}" title="{{ trans('table.details') }}" ><i class="fa fa-fw fa-eye text-primary"></i> </a>--}}
-                    {{--<a href="#" title="{{ trans('table.delete') }}"><i class="fa fa-fw fa-trash text-danger"></i> </a>--}}
-                    {{--</td>--}}
-                    {{--</tr>--}}
-                    {{--<tr>--}}
-                    {{--<td>Event 2</td>--}}
-                    {{--<td>Birthday</td>--}}
-                    {{--<td>Mark</td>--}}
-                    {{--<td>22/03/2018 - 24/03/2018</td>--}}
-                    {{--<td>10.00 pm- 12:00 pm</td>--}}
-                    {{--<td>Room B</td>--}}
-                    {{--<td>456 2th St. Melbourne,FL 32904</td>--}}
-                    {{--<td>(125)5460007</td>--}}
-                    {{--<td>--}}
-                    {{--<a href="{{ $type.'/create' }}" title="{{ trans('table.edit') }}"><i class="fa fa-fw fa-pencil text-warning"></i> </a>--}}
-                    {{--<a href="{{ url('event/' . 2 . '/show' ) }}" title="{{ trans('table.details') }}" ><i class="fa fa-fw fa-eye text-primary"></i> </a>--}}
-                    {{--<a href="#" title="{{ trans('table.delete') }}"><i class="fa fa-fw fa-trash text-danger"></i> </a>--}}
-                    {{--</td>--}}
-                    {{--</tr>--}}
-                    {{--<tr>--}}
-                    {{--<td>Event 3</td>--}}
-                    {{--<td>Borad Meeting</td>--}}
-                    {{--<td>Martin</td>--}}
-                    {{--<td>1/03/2018 - 5/03/2018</td>--}}
-                    {{--<td>9.00 am- 11:00 am</td>--}}
-                    {{--<td>Room C</td>--}}
-                    {{--<td>777 6th St. Melbourne,FL 32904</td>--}}
-                    {{--<td>(122)1231231</td>--}}
-                    {{--<td>--}}
-                    {{--<a href="{{  $type.'/create' }}" title="{{ trans('table.edit') }}"><i class="fa fa-fw fa-pencil text-warning"></i> </a>--}}
-                    {{--<a href="{{ url('event/' . 3 . '/show' ) }}" title="{{ trans('table.details') }}" ><i class="fa fa-fw fa-eye text-primary"></i> </a>--}}
-                    {{--<a href="#" title="{{ trans('table.delete') }}"><i class="fa fa-fw fa-trash text-danger"></i> </a>--}}
-                    {{--</td>--}}
-                    {{--</tr>--}}
-                    {{--<tr>--}}
-                    {{--<td>Event 4</td>--}}
-                    {{--<td>Party</td>--}}
-                    {{--<td>Max</td>--}}
-                    {{--<td>10/03/2018 - 15/03/2018</td>--}}
-                    {{--<td>9.00 pm- 11:00 pm</td>--}}
-                    {{--<td>Room A</td>--}}
-                    {{--<td>007 6th St. Melbourne,FL 32904</td>--}}
-                    {{--<td>(122)1478521</td>--}}
-                    {{--<td>--}}
-                    {{--<a href="{{  $type.'/create' }}" title="{{ trans('table.edit') }}"><i class="fa fa-fw fa-pencil text-warning"></i> </a>--}}
-                    {{--<a href="{{ url('event/' . 3 . '/show' ) }}" title="{{ trans('table.details') }}" ><i class="fa fa-fw fa-eye text-primary"></i> </a>--}}
-                    {{--<a href="#" title="{{ trans('table.delete') }}"><i class="fa fa-fw fa-trash text-danger"></i> </a>--}}
-                    {{--</td>--}}
-                    {{--</tr>--}}
+                    @foreach($events as $event)
+                        <tr role="row">
+                            <td>{{$events['booking']['booking_name']}}</td>
+                            <?php
+                                $temp = explode(' ', ucwords($events['contactus']['event_type_trashed']['name']));
+                                $result = '';
+                                foreach($temp as $t)
+                                    $result .= $t[0];
+                                $final_name = $result .'_Event_' . str_replace("-",'',date('d-m-Y',strtotime($events['booking']['from_date']))) . '' . str_replace(":",'',str_replace( "pm",'',str_replace("am",'',$events['start_time'])));
+                            ?>
+                            <td>{{$final_name}}</td>
+                            <?php
+                                dd($event['owner_trashed']);
+                            ?>
+                        
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
