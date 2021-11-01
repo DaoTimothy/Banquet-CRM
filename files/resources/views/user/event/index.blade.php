@@ -396,7 +396,7 @@
                         <th>{{ trans('Lead Owner') }}</th>
                         <th>{{ trans('Date') }}</th>
                         <th>{{ trans('Time') }}</th>
-                        {{--<th>{{ trans('Room') }}</th>--}}
+                        <th>{{ trans('Room') }}</th>
                         <th>{{ trans('Venue') }}</th>
                         <th>{{ trans('Contact') }}</th>
                         <th>{{ trans('Status') }}</th>
@@ -404,23 +404,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($events as $event)
-                        <tr role="row">
-                            <td>{{$events['booking']['booking_name']}}</td>
-                            <?php
-                                $temp = explode(' ', ucwords($events['contactus']['event_type_trashed']['name']));
-                                $result = '';
-                                foreach($temp as $t)
-                                    $result .= $t[0];
-                                $final_name = $result .'_Event_' . str_replace("-",'',date('d-m-Y',strtotime($events['booking']['from_date']))) . '' . str_replace(":",'',str_replace( "pm",'',str_replace("am",'',$events['start_time'])));
-                            ?>
-                            <td>{{$final_name}}</td>
-                            <?php
-                                dd($event['owner_trashed']);
-                            ?>
-                        
-                        </tr>
-                    @endforeach
                     </tbody>
                 </table>
             </div>

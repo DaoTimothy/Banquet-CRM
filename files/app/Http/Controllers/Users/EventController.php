@@ -1163,7 +1163,7 @@ class EventController extends UserController
                         'event_planner' => ($event->owner_trashed) ? $event->owner_trashed->first_name .' '. $event->owner_trashed->last_name : '',
                         'created_at' => date('D d,M Y',strtotime($event->booking->from_date)),
                         'time' => $event->start_time,
-//                        'room' => EventRooms::select('room_name')->whereIn('id',explode(",",$event->rooms))->get()->pluck('room_name'),
+                        'room' => EventRooms::select('room_name')->whereIn('id',explode(",",$event->rooms))->get()->pluck('room_name'),
                         'venue' => $event->booking->location_trashed->name,
                         'contact' => $event->booking->client_phone,
                         'status' => $event->status,
@@ -1172,7 +1172,7 @@ class EventController extends UserController
         }else{
             $event = $this->eventRepository->getAll()
                 ->with('booking', 'contacts', 'owner_trashed', 'booking.location_trashed', 'logistics')
-                ->where('owner_id',Sentinel::getUser()->id)
+                //->where('owner_id',Sentinel::getUser()->id)
                 ->get()
                 ->map(function ($event) {
                     $temp = explode(' ', ucwords($event->contactus->event_type_trashed->name));
@@ -1185,15 +1185,15 @@ class EventController extends UserController
                         'event' => $event->booking->booking_name,
                         'name' => $final_name,
                         'event_planner' => ($event->owner_trashed) ? $event->owner_trashed->first_name .' '. $event->owner_trashed->last_name : '',
-                        'created_at' => date('D d,M Y',strtotime($event->booking->from_date)),
+                        'created_at' => date('d M Y',strtotime($event->booking->from_date)),
                         'time' => $event->start_time,
-//                        'room' => EventRooms::select('room_name')->whereIn('id',explode(",",$event->rooms))->get()->pluck('room_name'),
+                        'room' => EventRooms::select('room_name')->whereIn('id',explode(",",$event->rooms))->get()->pluck('room_name'),
                         'venue' => $event->booking->location_trashed->name ,
                         'contact' => $event->booking->client_phone,
                         'status' => $event->status,
                     ];
                 });
-    }
+        }
 
         return $datatables->collection($event)
             ->addColumn('Actions', '@if(Sentinel::getUser()->hasAccess([\'event.write\']) || Sentinel::inRole(\'admin\'))
