@@ -866,7 +866,7 @@
                                             </div>
                                             <div align="left">
                                                 <a class="btn btn-success" data-dismiss="modal"><i class="fa fa-arrow-left"> <?php echo e(trans('BACK')); ?></i></a></span>
-                                                <span> <a class="btn btn-success" onclick="saveNote()"><?php echo e(trans('SAVE')); ?></a></span>
+                                                <span> <a class="btn btn-success" onclick="addNote()"><?php echo e(trans('SAVE')); ?></a></span>
                                             </div>
                                         </div>
                                     </div>
@@ -1091,7 +1091,7 @@
                 });
             }
 
-            function saveNote() {
+            function addNote() {
                 var noteDescription = $('#noteDescription').val();
 
                 $.ajax({

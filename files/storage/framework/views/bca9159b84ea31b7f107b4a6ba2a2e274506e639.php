@@ -871,7 +871,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                                             </div>
                                             <div align="left">
                                                 <a class="btn btn-primary" data-dismiss="modal"> <?php echo e(trans('event.cancel')); ?></a></span>
-                                                <span> <a class="btn btn-primary" onclick="saveNote()"><?php echo e(trans('event.save')); ?></a></span>
+                                                <span> <a class="btn btn-primary" onclick="addNote()"><?php echo e(trans('event.save')); ?></a></span>
                                             </div>
                                         </div>
                                     </div>
@@ -1297,7 +1297,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                 });
             }
 
-            function saveNote() {
+            function addNote() {
                 var noteDescription = $('#noteDescription').val();
 
                 $.ajax({

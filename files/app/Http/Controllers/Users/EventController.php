@@ -355,7 +355,7 @@ class EventController extends UserController
                 $eating_menu['event_id'] = $event_id;
                 $eating_menu['caterer_id'] = $request->get("caterers");
                 $eating_menu['service_type_id'] = $request->get("service_type");
-                $eating_menu['counters'] = $request->get("counter");
+                //$eating_menu['counters'] = $request->get("counter");
                 $eating_menu['head_table'] = ($request->get("head_table") ? $request->get("head_table_count") : 0);
                 $eating_menu['dinning_table'] = ($request->get("dinning_table") ? $request->get("dinning_table_count") : 0);
                 $data  = SubMenu::where('menu_type',$request->get("menuType_".$value))->get()->count();
@@ -698,7 +698,7 @@ class EventController extends UserController
             $cat = EventCaterers::where('id',$request->get("caterers"))->first();
             $grand_total = $grand_total + ($cat == null)? 0 : $cat->price;
             $eating_menu['service_type_id'] = $request->get("service_type");
-            $eating_menu['counters'] = $request->get("counter");
+            //$eating_menu['counters'] = $request->get("counter");
             $eating_menu['head_table'] = ($request->get("head_table") ? $request->get("head_table_count") : 0);
             $eating_menu['dinning_table'] = ($request->get("dinning_table") ? $request->get("dinning_table_count") : 0);
             foreach (explode(",",$count) as $key => $value){
@@ -710,7 +710,7 @@ class EventController extends UserController
                         if($request->has("menuItems_".$value."_".($j + $value))){
                             $eating_menu['caterer_id'] = $request->get("caterers");
                             $eating_menu['service_type_id'] = $request->get("service_type");
-                            $eating_menu['counters'] = $request->get("counter");
+                            //$eating_menu['counters'] = $request->get("counter");
                             $eating_menu['head_table'] = ($request->get("head_table") ? $request->get("head_table_count") : 0);
                             $eating_menu['dinning_table'] = ($request->get("dinning_table") ? $request->get("dinning_table_count") : 0);
                             $eating_menu['sub_menu_id'] = $request->get("sub_menu_id_".$value."_".($j + $value));
@@ -723,7 +723,7 @@ class EventController extends UserController
                         }else{
                             $eating_menu['caterer_id'] = $request->get("caterers");
                             $eating_menu['service_type_id'] = $request->get("service_type");
-                            $eating_menu['counters'] = $request->get("counter");
+                            //$eating_menu['counters'] = $request->get("counter");
                             $eating_menu['head_table'] = ($request->get("head_table") ? $request->get("head_table_count") : 0);
                             $eating_menu['dinning_table'] = ($request->get("dinning_table") ? $request->get("dinning_table_count") : 0);
                             $eating_menu['sub_menu_id'] = $request->get("sub_menu_id_".$value."_".($j + $value));
@@ -741,7 +741,7 @@ class EventController extends UserController
                             }
                             $eating_menu['caterer_id'] = $request->get("caterers");
                             $eating_menu['service_type_id'] = $request->get("service_type");
-                            $eating_menu['counters'] = $request->get("counter");
+                            //$eating_menu['counters'] = $request->get("counter");
                             $eating_menu['head_table'] = ($request->get("head_table") ? $request->get("head_table_count") : 0);
                             $eating_menu['dinning_table'] = ($request->get("dinning_table") ? $request->get("dinning_table_count") : 0);
                             $eating_data = new EventMenus();
@@ -887,7 +887,7 @@ class EventController extends UserController
 
     public function show(Event $event)
     {
-
+        //dd($event);
         $temp = explode(' ', ucwords($event->contactus->event_type_trashed->name));
         $result = '';
         foreach($temp as $t)
