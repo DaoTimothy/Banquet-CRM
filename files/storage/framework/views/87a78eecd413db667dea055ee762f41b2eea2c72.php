@@ -273,7 +273,7 @@
         function updateStatus(id,status){
             var host = '<?php echo (isset($_SERVER['HTTPS']) ? "https" : "http") .'://'. $_SERVER['HTTP_HOST'] ;?>';
             $.ajax({
-                url : host + '/lead/'+id+'/editStatus',
+                url : host + '/Banquet-CRM/files/public/lead/'+id+'/editStatus',
                 type : 'post',
                 data : {status : status , _token : '<?php echo e(csrf_token()); ?>'},
                 dataType : 'json',

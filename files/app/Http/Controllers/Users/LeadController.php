@@ -440,9 +440,11 @@ class LeadController extends UserController {
     function editStatus(Lead $lead,Request $request){
         $event = Event::where('from_lead',$lead->id)->first();
         $converted = false;
-        if(count($event) > 0){
-            $converted = true;
-        }
+		if(is_countable($event)) {
+			if(count($event) > 0){
+				$converted = true;
+			}
+		}
         if($request->get('status') == 'Converted'){
             if(!$converted){
                 return response()->json($converted,200);
