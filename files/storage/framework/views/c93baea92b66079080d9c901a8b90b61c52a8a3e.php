@@ -436,7 +436,7 @@
         function updateStatus(id,status){
             var host = '<?php echo (isset($_SERVER['HTTPS']) ? "https" : "http") .'://'. $_SERVER['HTTP_HOST'] ;?>';
             $.ajax({
-                url : host + '/Banquet-CRM/files/public/event/'+id+'/editStatus',
+                url : host + '/Banquet-CRM/files/public/event/'+id+'/editStatus', //This may cause an error on a live server
                 type : 'post',
                 data : {status : status , _token : '<?php echo e(csrf_token()); ?>'},
                 dataType : 'json',

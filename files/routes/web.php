@@ -182,13 +182,13 @@ Route::group(array('middleware' => ['sentinel', 'authorized', 'xss_protection'],
         Route::get('{event}/proposalpdf', 'EventController@proposalPdfShow');
         Route::get('{event}/bookingorderpdf', 'EventController@bookingOrderPdfShow');
 
-        Route::post('{event}/addTask', 'EventController@addTask');
-        Route::post('{event}/addNote', 'EventController@addNote');
-        Route::post('{event}/addPayment', 'EventController@addPayment');
-        Route::post('{event}/editPayment', 'EventController@editPayment');
-        Route::post('{event}/updatePayment', 'EventController@updatePayment');
-        Route::post('{event}/deletePayment', 'EventController@deletePayment');
-        Route::post('{event}/addDiscussion', 'EventController@addDiscussion');
+        Route::post('/addTask', 'EventController@addTask');
+        Route::post('/addNote', 'EventController@addNote');
+        Route::post('/addPayment', 'EventController@addPayment');
+        Route::post('/editPayment', 'EventController@editPayment');
+        Route::post('/updatePayment', 'EventController@updatePayment');
+        Route::post('/deletePayment', 'EventController@deletePayment');
+        Route::post('/addDiscussion', 'EventController@addDiscussion');
 
         Route::get('filterMenuType', 'EventController@filterMenuType');
         Route::get('filterSubMenuAndItems', 'EventController@filterSubMenuAndItems');

@@ -207,7 +207,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                                 <div class="col-md-3">
                                     <b>{{trans('event.morningSnacks')}}</b>
                                     @if(($event->eating_times) && $event->eating_times->morning_snacks_time != NULL)
-                                        <?php $data = explode('_', $event->eating_times->morning_snacks_time); ?>
+                                        <?php $data = array($event->eating_times->morning_snacks_time, $event->eating_times->morning_snacks_time_end); ?>
                                         <p>{{$data[0] .' TO ' .$data[1]}}</p>
                                     @else
                                         <p>{{trans('event.noTimeSet')}}</p>
@@ -216,7 +216,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                                 <div class="col-md-3">
                                     <b>{{trans('event.morningTeaCoffee')}}</b>
                                     @if(($event->eating_times) && $event->eating_times->morning_tea_time != NULL)
-                                        <?php $data = explode('_', $event->eating_times->morning_tea_time); ?>
+                                        <?php $data = array($event->eating_times->morning_tea_time, $event->eating_times->morning_tea_time_end); ?>
                                         <p>{{$data[0] .' TO '.$data[1]}}</p>
                                     @else
                                         <p>{{trans('event.noTimeSet')}}</p>
@@ -225,7 +225,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                                 <div class="col-md-3">
                                     <b>{{trans('event.lunch')}}</b>
                                     @if(($event->eating_times) && $event->eating_times->lunch_time != NULL)
-                                        <?php $data = explode('_', $event->eating_times->lunch_time); ?>
+                                        <?php $data = array($event->eating_times->lunch_time, $event->eating_times->lunch_time_end); ?>
                                         <p>{{$data[0] .' TO '.$data[1]}}</p>
                                     @else
                                         <p>{{trans('event.noTimeSet')}}</p>
@@ -234,7 +234,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                                 <div class="col-md-3">
                                     <b>{{trans('event.afternoonTeaCoffee')}}</b>
                                     @if(($event->eating_times) && $event->eating_times->evening_tea_time != NULL)
-                                        <?php $data = explode('_', $event->eating_times->evening_tea_time); ?>
+                                        <?php $data = array($event->eating_times->evening_tea_time, $event->eating_times->evening_tea_time_end); ?>
                                         <p>{{$data[0] .' TO '.$data[1]}}</p>
                                     @else
                                         <p>{{trans('event.noTimeSet')}}</p>
@@ -243,7 +243,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                                 <div class="col-md-3">
                                     <b>{{trans('event.eveningSnacks')}}</b>
                                     @if(($event->eating_times) && $event->eating_times->evening_snacks_time != NULL)
-                                        <?php $data = explode('_', $event->eating_times->evening_snacks_time); ?>
+                                        <?php $data = array($event->eating_times->evening_snacks_time, $event->eating_times->evening_snacks_time_end); ?>
                                         <p>{{$data[0] .' TO '.$data[1]}}</p>
                                     @else
                                         <p>{{trans('event.noTimeSet')}}</p>
@@ -252,7 +252,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                                 <div class="col-md-3">
                                     <b>{{trans('event.dinner')}}</b>
                                     @if(($event->eating_times) && $event->eating_times->dinner_time != NULL)
-                                        <?php $data = explode('_', $event->eating_times->dinner_time); ?>
+                                        <?php $data = array($event->eating_times->dinner_time, $event->eating_times->dinner_time_end); ?>
                                         <p>{{$data[0] .' TO '.$data[1]}}</p>
                                     @else
                                         <p>{{trans('event.noTimeSet')}}</p>
@@ -1240,7 +1240,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
 
             function addNote() {
                 var noteDescription = $('#noteDescription').val();
-
+                
                 $.ajax({
                     url: '{{url($type.'/addNote')}}',
                     type: "POST",

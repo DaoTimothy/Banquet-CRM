@@ -886,8 +886,8 @@ class EventController extends UserController
     }
 
     public function show(Event $event)
-    {
-        //dd($event);
+    {   
+        //$event->id =  
         $temp = explode(' ', ucwords($event->contactus->event_type_trashed->name));
         $result = '';
         foreach($temp as $t)

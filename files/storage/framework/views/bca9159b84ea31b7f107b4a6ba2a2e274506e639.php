@@ -1299,7 +1299,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
 
             function addNote() {
                 var noteDescription = $('#noteDescription').val();
-
+                
                 $.ajax({
                     url: '<?php echo e(url($type.'/addNote')); ?>',
                     type: "POST",
