@@ -635,7 +635,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                                         <div id="collapse<?php echo e($key); ?>" class="panel-collapse collapse form-panel-collapse">
                                             <div class="panel-body row">
                                                 <div class="col-md-1">
-                                                    <img class="discuss-user-dp" src="/uploads/avatar/<?php echo e($user_data->user_avatar); ?>">
+                                                    <img class="discuss-user-dp" src="/Banquet-CRM/files/public/uploads/avatar/<?php echo e($user_data->user_avatar); ?>">
                                                 </div>
                                                 <div class="col-md-11">
                                                     <p><b><?php echo e($user_data->first_name . ' ' . $user_data->last_name); ?></b> <?php echo e(date('i',strtotime($value->created_at))); ?> minutes

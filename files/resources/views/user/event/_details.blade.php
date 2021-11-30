@@ -615,7 +615,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                                         <div id="collapse{{$key}}" class="panel-collapse collapse form-panel-collapse">
                                             <div class="panel-body row">
                                                 <div class="col-md-1">
-                                                    <img class="discuss-user-dp" src="/uploads/avatar/{{$user_data->user_avatar}}">
+                                                    <img class="discuss-user-dp" src="/Banquet-CRM/files/public/uploads/avatar/{{$user_data->user_avatar}}"> <!-- might only work for local -->
                                                 </div>
                                                 <div class="col-md-11">
                                                     <p><b>{{$user_data->first_name . ' ' . $user_data->last_name}}</b> {{date('i',strtotime($value->created_at))}} minutes
