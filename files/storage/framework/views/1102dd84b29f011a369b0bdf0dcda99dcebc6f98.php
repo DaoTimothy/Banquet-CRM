@@ -1,5 +1,5 @@
 <style>
-    @import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600);
+    @import  url(https://fonts.googleapis.com/css?family=Poppins:400,500,600);
 
     html {
         font-family: 'Poppins', sans-serif;
@@ -132,19 +132,19 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
 <table>
     <tr>
         <td>
-            <img src="{{url('uploads/site/'.$pdf_logo)}}" height="100px" width="400px" alt="img" align="center" class="pdf-img">
+            <img src="<?php echo e(url('uploads/site/'.$pdf_logo)); ?>" height="100px" width="400px" alt="img" align="center" class="pdf-img">
         </td>
         <td>
             <table>
                 <tr>
-                    <td><b> Address : </b>{{($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')}}</td>
+                    <td><b> Address : </b><?php echo e(($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')); ?></td>
                 </tr>
                 <tr>
-                    <td><b> Phone : </b> {{($event->lead ? $event->lead->mobile: 'No Contact Provided')}}</td>
+                    <td><b> Phone : </b> <?php echo e(($event->lead ? $event->lead->mobile: 'No Contact Provided')); ?></td>
                 </tr>
-                {{--<tr>--}}
-                {{--<td><b> Fax : </b> 785-852-9871</td>--}}
-                {{--</tr>--}}
+                
+                
+                
             </table>
         </td>
     </tr>
@@ -157,20 +157,20 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
     <tbody>
     <tr>
         <td class="table-border td-padding"><b>Name</b></td>
-        <td class="table-border td-padding">{{($event->event_photographers->photographers) ? $event->event_photographers->photographers->name : 'No Photographer Selected'}}</td>
+        <td class="table-border td-padding"><?php echo e(($event->event_photographers->photographers) ? $event->event_photographers->photographers->name : 'No Photographer Selected'); ?></td>
     </tr>
     <tr>
         <td class="table-border td-padding"><b>Address</b></td>
-        <td class="table-border td-padding">{{($event->event_photographers->photographers) ? $event->event_photographers->photographers->address : 'No Photographer Selected'}}</td>
+        <td class="table-border td-padding"><?php echo e(($event->event_photographers->photographers) ? $event->event_photographers->photographers->address : 'No Photographer Selected'); ?></td>
     </tr>
     <tr>
         <td class="table-border td-padding"><b>Phone</b></td>
-        <td class="table-border td-padding">{{($event->event_photographers->photographers) ? $event->event_photographers->photographers->phone : 'No Photographer Selected'}}</td>
+        <td class="table-border td-padding"><?php echo e(($event->event_photographers->photographers) ? $event->event_photographers->photographers->phone : 'No Photographer Selected'); ?></td>
     </tr>
 
     <tr>
         <td class="table-border td-padding"><b>Email</b></td>
-        <td class="table-border td-padding">{{($event->event_photographers->photographers) ? $event->event_photographers->photographers->email : 'No Photographer Selected'}}</td>
+        <td class="table-border td-padding"><?php echo e(($event->event_photographers->photographers) ? $event->event_photographers->photographers->email : 'No Photographer Selected'); ?></td>
     </tr>
     </tbody>
 </table>
@@ -180,31 +180,31 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
     <tbody>
     <tr>
         <td class="table-border td-padding"><b>Types of Event</b></td>
-        <td class="table-border td-padding">{{$event->contactus->event_type_trashed->name}}</td>
+        <td class="table-border td-padding"><?php echo e($event->contactus->event_type_trashed->name); ?></td>
         <td class="table-border td-padding"><b>Date Of Event</b></td>
-        <td class="table-border td-padding">{{date('D d,Y',strtotime($event->booking->from_date))}}</td>
+        <td class="table-border td-padding"><?php echo e(date('D d,Y',strtotime($event->booking->from_date))); ?></td>
     </tr>
     <tr>
         <td class="table-border td-padding"><b>Address for your event</b></td>
-        <td class="table-border td-padding" colspan="3">{{($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')}}</td>
+        <td class="table-border td-padding" colspan="3"><?php echo e(($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')); ?></td>
     </tr>
     <tr>
         <td class="table-border td-padding"><b>Our Arrival Time</b></td>
-        <td class="table-border td-padding">{{($event->logistics->arrival_time != NULL ? $event->logistics->arrival_time : 'No Time Provided')}}</td>
+        <td class="table-border td-padding"><?php echo e(($event->logistics->arrival_time != NULL ? $event->logistics->arrival_time : 'No Time Provided')); ?></td>
         <td class="table-border td-padding"><b>Food Service Time</b></td>
-        <td class="table-border td-padding">{{($event->eating_times->service_time != NULL ? $event->eating_times->service_time : 'No Time Provided')}}</td>
+        <td class="table-border td-padding"><?php echo e(($event->eating_times->service_time != NULL ? $event->eating_times->service_time : 'No Time Provided')); ?></td>
     </tr>
 
     <tr>
         <td class="table-border td-padding"><b>Times you would like to meal served?</b></td>
-        <td class="table-border td-padding"><b>Canapes : </b>{{($event->eating_times->canapes != NULL || $event->eating_times->canapes != '' ? $event->eating_times->canapes : 'No Time Provided')}}</td>
-        <td class="table-border td-padding"><b>Main : </b>{{($event->eating_times->service_time != NULL || $event->eating_times->service_time != '' ? $event->eating_times->service_time : 'No Time Provided')}}</td>
-        <td class="table-border td-padding"><b>Dessert : </b>{{($event->eating_times->dinner_time != NULL || $event->eating_times->dinner_time != '' ? explode("_",$event->eating_times->dinner_time)[0] : 'No Time Provided')}}</td>
+        <td class="table-border td-padding"><b>Canapes : </b><?php echo e(($event->eating_times->canapes != NULL || $event->eating_times->canapes != '' ? $event->eating_times->canapes : 'No Time Provided')); ?></td>
+        <td class="table-border td-padding"><b>Main : </b><?php echo e(($event->eating_times->service_time != NULL || $event->eating_times->service_time != '' ? $event->eating_times->service_time : 'No Time Provided')); ?></td>
+        <td class="table-border td-padding"><b>Dessert : </b><?php echo e(($event->eating_times->dinner_time != NULL || $event->eating_times->dinner_time != '' ? explode("_",$event->eating_times->dinner_time)[0] : 'No Time Provided')); ?></td>
     </tr>
 
     <tr>
         <td class="table-border td-padding"><b>Time to snacks Served?</b></td>
-        <td class="table-border td-padding">{{($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '' ? explode("_",$event->eating_times->morning_snacks_time)[0] : 'No Time Provided')}} To <?php
+        <td class="table-border td-padding"><?php echo e(($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '' ? explode("_",$event->eating_times->morning_snacks_time)[0] : 'No Time Provided')); ?> To <?php
             if ($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '') {
                 try {
                     echo e(explode("_",$event->eating_times->morning_snacks_time)[1]);
@@ -215,7 +215,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                 echo e('No Time Provided');
             }
             ?></td>
-        <td class="table-border td-padding">{{($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '' ? explode("_",$event->eating_times->evening_snacks_time)[0] : 'No Time Provided')}} To <?php
+        <td class="table-border td-padding"><?php echo e(($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '' ? explode("_",$event->eating_times->evening_snacks_time)[0] : 'No Time Provided')); ?> To <?php
             if ($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '') {
                 try {
                     echo e(explode("_",$event->eating_times->evening_snacks_time)[1]);
@@ -231,7 +231,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
 
     <tr>
         <td class="table-border td-padding"><b>Number of people in Total</b></td>
-        <td class="table-border td-padding" colspan="3">{{($event->contactus->expected_guest != NULL || $event->contactus->expected_guest != '' ? $event->contactus->expected_guest : 'No Guest List Provided')}}</td>
+        <td class="table-border td-padding" colspan="3"><?php echo e(($event->contactus->expected_guest != NULL || $event->contactus->expected_guest != '' ? $event->contactus->expected_guest : 'No Guest List Provided')); ?></td>
     </tr>
     </tbody>
 </table>
@@ -239,19 +239,19 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
 <h3><b>Photography Service</b></h3>
 <table class="table table-bordered table-border">
     <tbody>
-        @if(is_countable($event->event_photographers))
-            @if(count($event->event_photographers) > 0)
+        <?php if(is_countable($event->event_photographers)): ?>
+            <?php if(count($event->event_photographers) > 0): ?>
             <?php $services = explode(",",$event->event_photographers->service_needed) ?>
-            @foreach($services as $value)
+            <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td class="table-border td-padding"><b>{{$value}}</b></td>
-                    {{--<td class="table-border td-padding"><b>Price</b></td>--}}
-                    {{--<td class="table-border td-padding"><b>QTY</b></td>--}}
-                    {{--<td class="table-border td-padding"><b>Subtotal</b></td>--}}
+                    <td class="table-border td-padding"><b><?php echo e($value); ?></b></td>
+                    
+                    
+                    
                 </tr>
-            @endforeach
-            @endif
-        @endif
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
+        <?php endif; ?>
         
     </tbody>
 </table>
@@ -266,7 +266,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                 </tr>
                 <tr>
                     <td>
-                        {{$event->event_photographers->wedding_photography_contract_terms}}
+                        <?php echo e($event->event_photographers->wedding_photography_contract_terms); ?>
+
                     </td>
                 </tr>
             </table>
@@ -279,7 +280,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                     <td><h3><b>Payment</b></h3></td>
                 </tr>
                 <tr>
-                    <td>{{$event->event_photographers->payment}}
+                    <td><?php echo e($event->event_photographers->payment); ?>
+
                     </td>
                 </tr>
             </table>
@@ -292,7 +294,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                     <td><h3><b>Cancellation</b></h3></td>
                 </tr>
                 <tr>
-                    <td>{{$event->event_photographers->cancellation}}
+                    <td><?php echo e($event->event_photographers->cancellation); ?>
+
                     </td>
                 </tr>
             </table>
@@ -305,7 +308,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                     <td><h3><b>Reschedule</b></h3></td>
                 </tr>
                 <tr>
-                    <td>{{$event->event_photographers->reschedule}}
+                    <td><?php echo e($event->event_photographers->reschedule); ?>
+
                     </td>
                 </tr>
             </table>
@@ -318,7 +322,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                     <td><h3><b>Liability</b></h3></td>
                 </tr>
                 <tr>
-                    <td>{{$event->event_photographers->liability}}
+                    <td><?php echo e($event->event_photographers->liability); ?>
+
                     </td>
                 </tr>
             </table>
@@ -331,7 +336,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                     <td><h3><b>Responsibilities</b></h3></td>
                 </tr>
                 <tr>
-                    <td>{{$event->event_photographers->responsibilities}}
+                    <td><?php echo e($event->event_photographers->responsibilities); ?>
+
                     </td>
                 </tr>
             </table>
@@ -344,7 +350,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                     <td><h3><b>Coverage</b></h3></td>
                 </tr>
                 <tr>
-                    <td>{{$event->event_photographers->coverage}}
+                    <td><?php echo e($event->event_photographers->coverage); ?>
+
                     </td>
                 </tr>
             </table>
@@ -357,7 +364,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                     <td><h3><b>Image Processing</b></h3></td>
                 </tr>
                 <tr>
-                    <td>{{$event->event_photographers->image_processing}}
+                    <td><?php echo e($event->event_photographers->image_processing); ?>
+
                     </td>
                 </tr>
             </table>
@@ -370,7 +378,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                     <td><h3><b>Model Release</b></h3></td>
                 </tr>
                 <tr>
-                    <td>{{$event->event_photographers->model_release}}
+                    <td><?php echo e($event->event_photographers->model_release); ?>
+
                     </td>
                 </tr>
             </table>
@@ -383,7 +392,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                     <td><h3><b>Copyright</b></h3></td>
                 </tr>
                 <tr>
-                    <td>{{$event->event_photographers->copyrite}}
+                    <td><?php echo e($event->event_photographers->copyrite); ?>
+
                     </td>
                 </tr>
             </table>
@@ -396,7 +406,8 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
                     <td><h3><b>Unauthorized Reproduction</b></h3></td>
                 </tr>
                 <tr>
-                    <td>{{$event->event_photographers->unauthorized_reproduction}}
+                    <td><?php echo e($event->event_photographers->unauthorized_reproduction); ?>
+
                     </td>
                 </tr>
             </table>
@@ -405,7 +416,7 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
     <tr>
         <td>
             <h3><b>Approval</b></h3>
-            <p>{{$event->event_photographers->approval}}</p>
+            <p><?php echo e($event->event_photographers->approval); ?></p>
         </td>
     </tr>
 </table>
@@ -414,12 +425,12 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
     <tr>
         <td class="sign-content">
             <hr>
-            <span>{{$event->user->first_name}} {{$event->user->last_name}}</span>
+            <span><?php echo e($event->user->first_name); ?> <?php echo e($event->user->last_name); ?></span>
         </td>
 
         <td class="sign-content">
             <hr>
-            <span>{{$event->user->first_name}} {{$event->user->last_name}} Signature</span>
+            <span><?php echo e($event->user->first_name); ?> <?php echo e($event->user->last_name); ?> Signature</span>
         </td>
         <td class="sign-content">
             <hr>
@@ -432,12 +443,12 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
     <tr>
         <td class="sign-content">
             <hr>
-            <span>{{($event->lead ? $event->lead->client_name: 'No Contact Provided')}}</span>
+            <span><?php echo e(($event->lead ? $event->lead->client_name: 'No Contact Provided')); ?></span>
         </td>
 
         <td class="sign-content">
             <hr>
-            <span>{{($event->lead ? $event->lead->client_name: 'No Contact Provided')}} Signature</span>
+            <span><?php echo e(($event->lead ? $event->lead->client_name: 'No Contact Provided')); ?> Signature</span>
         </td>
         <td class="sign-content">
             <hr>

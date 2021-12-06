@@ -195,10 +195,30 @@ $currency_position = (count($currency_position) > 0) ? unserialize($currency_pos
         <td class="table-border td-padding"><b>Time to snacks Served?</b></td>
         <td class="table-border td-padding"><?php echo e(($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '' ? explode("_",$event->eating_times->morning_snacks_time)[0] : 'No Time Provided')); ?>
 
-            To <?php echo e(($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '' ? explode("_",$event->eating_times->morning_snacks_time)[1] : 'No Time Provided')); ?></td>
+            To <?php
+            if ($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '') {
+                try {
+                    echo e(explode("_",$event->eating_times->morning_snacks_time)[1]);
+                } catch (Exception $e) {
+                    echo e('No Time Provided');
+                }
+            } else {
+                echo e('No Time Provided');
+            }
+            ?></td>
         <td class="table-border td-padding"><?php echo e(($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '' ? explode("_",$event->eating_times->evening_snacks_time)[0] : 'No Time Provided')); ?>
 
-            To <?php echo e(($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '' ? explode("_",$event->eating_times->evening_snacks_time)[1] : 'No Time Provided')); ?></td>
+            To <?php
+            if ($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '') {
+                try {
+                    echo e(explode("_",$event->eating_times->evening_snacks_time)[1]);
+                } catch (Exception $e) {
+                    echo e('No Time Provided');
+                }
+            } else {
+                echo e('No Time Provided');
+            } 
+            ?></td>
         <td class="table-border td-padding"></td>
     </tr>
 

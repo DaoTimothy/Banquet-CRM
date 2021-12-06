@@ -1,5 +1,5 @@
 <style>
-    @import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600);
+    @import  url(https://fonts.googleapis.com/css?family=Poppins:400,500,600);
 
     html {
         font-family: 'Poppins', sans-serif;
@@ -127,15 +127,15 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <table style="margin-bottom: 20px;">
         <tr>
             <td>
-                <img src="{{url('uploads/site/'.$pdf_logo)}}" height="100px" width="400px" alt="img" align="center" class="pdf-img">
+                <img src="<?php echo e(url('uploads/site/'.$pdf_logo)); ?>" height="100px" width="400px" alt="img" align="center" class="pdf-img">
             </td>
             <td>
                 <table>
                     <tr>
-                        <td><b> Address : </b>{{($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')}}</td>
+                        <td><b> Address : </b><?php echo e(($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')); ?></td>
                     </tr>
                     <tr>
-                        <td><b> Phone : </b> {{($event->lead != NULL ? $event->lead->mobile: 'No Contact Provided')}}</td>
+                        <td><b> Phone : </b> <?php echo e(($event->lead != NULL ? $event->lead->mobile: 'No Contact Provided')); ?></td>
                     </tr>
                 </table>
             </td>
@@ -147,20 +147,20 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
         <tbody>
         <tr class="table-border">
             <td class="table-border td-padding"><b>Full Name</b></td>
-            <td class="table-border td-padding">{{$event->booking->booking_name}}</td>
+            <td class="table-border td-padding"><?php echo e($event->booking->booking_name); ?></td>
             <td class="table-border td-padding"><b>Date</b></td>
-            <td class="table-border td-padding">{{date('D d,Y',strtotime($event->booking->from_date))}}</td>
+            <td class="table-border td-padding"><?php echo e(date('D d,Y',strtotime($event->booking->from_date))); ?></td>
         </tr>
         <tr class="table-border">
             <td class="table-border td-padding"><b>Contact Person</b></td>
-            <td class="table-border td-padding">{{($event->lead ? $event->lead->client_name: 'No Contact Provided')}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->lead ? $event->lead->client_name: 'No Contact Provided')); ?></td>
             <td class="table-border td-padding"><b>Phone</b>
-            <td class="table-border td-padding">{{($event->lead ? $event->lead->mobile: 'No Contact Provided')}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->lead ? $event->lead->mobile: 'No Contact Provided')); ?></td>
         </tr>
-        {{--<tr class="table-border">--}}
-        {{--<td class="table-border td-padding"><b>Billing Address</b></td>--}}
-        {{--<td class="table-border td-padding" colspan="3">No Address Provided</td>--}}
-        {{--</tr>--}}
+        
+        
+        
+        
         </tbody>
     </table>
 
@@ -169,31 +169,31 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
         <tbody>
         <tr>
             <td class="table-border td-padding"><b>Types of Event</b></td>
-            <td class="table-border td-padding">{{$event->contactus->event_type_trashed->name}}</td>
+            <td class="table-border td-padding"><?php echo e($event->contactus->event_type_trashed->name); ?></td>
             <td class="table-border td-padding"><b>Date Of Event</b></td>
-            <td class="table-border td-padding">{{date('D d,Y',strtotime($event->booking->from_date))}}</td>
+            <td class="table-border td-padding"><?php echo e(date('D d,Y',strtotime($event->booking->from_date))); ?></td>
         </tr>
         <tr>
             <td class="table-border td-padding"><b>Address for your event</b></td>
-            <td class="table-border td-padding" colspan="3">{{($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')}}</td>
+            <td class="table-border td-padding" colspan="3"><?php echo e(($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')); ?></td>
         </tr>
         <tr>
             <td class="table-border td-padding"><b>Our Arrival Time</b></td>
-            <td class="table-border td-padding">{{($event->logistics->arrival_time != NULL ? $event->logistics->arrival_time : 'No Time Provided')}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->logistics->arrival_time != NULL ? $event->logistics->arrival_time : 'No Time Provided')); ?></td>
             <td class="table-border td-padding"><b>Food Service Time</b></td>
-            <td class="table-border td-padding">{{($event->eating_times->service_time != NULL ? $event->eating_times->service_time : 'No Time Provided')}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->eating_times->service_time != NULL ? $event->eating_times->service_time : 'No Time Provided')); ?></td>
         </tr>
 
         <tr>
             <td class="table-border td-padding"><b>Times you would like to meal served?</b></td>
-            <td class="table-border td-padding"><b>Canapes : </b>{{($event->eating_times->canapes != NULL || $event->eating_times->canapes != '' ? $event->eating_times->canapes : 'No Time Provided')}}</td>
-            <td class="table-border td-padding"><b>Main : </b>{{($event->eating_times->service_time != NULL || $event->eating_times->service_time != '' ? $event->eating_times->service_time : 'No Time Provided')}}</td>
-            <td class="table-border td-padding"><b>Dessert : </b>{{($event->eating_times->dinner_time != NULL || $event->eating_times->dinner_time != '' ? explode("_",$event->eating_times->dinner_time)[0] : 'No Time Provided')}}</td>
+            <td class="table-border td-padding"><b>Canapes : </b><?php echo e(($event->eating_times->canapes != NULL || $event->eating_times->canapes != '' ? $event->eating_times->canapes : 'No Time Provided')); ?></td>
+            <td class="table-border td-padding"><b>Main : </b><?php echo e(($event->eating_times->service_time != NULL || $event->eating_times->service_time != '' ? $event->eating_times->service_time : 'No Time Provided')); ?></td>
+            <td class="table-border td-padding"><b>Dessert : </b><?php echo e(($event->eating_times->dinner_time != NULL || $event->eating_times->dinner_time != '' ? explode("_",$event->eating_times->dinner_time)[0] : 'No Time Provided')); ?></td>
         </tr>
 
         <tr>
             <td class="table-border td-padding"><b>Time to snacks Served?</b></td>
-            <td class="table-border td-padding">{{($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '' ? explode("_",$event->eating_times->morning_snacks_time)[0] : 'No Time Provided')}} To <?php
+            <td class="table-border td-padding"><?php echo e(($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '' ? explode("_",$event->eating_times->morning_snacks_time)[0] : 'No Time Provided')); ?> To <?php
             if ($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '') {
                 try {
                     echo e(explode("_",$event->eating_times->morning_snacks_time)[1]);
@@ -204,7 +204,7 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
                 echo e('No Time Provided');
             }
             ?></td>
-            <td class="table-border td-padding">{{($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '' ? explode("_",$event->eating_times->evening_snacks_time)[0] : 'No Time Provided')}} To <?php
+            <td class="table-border td-padding"><?php echo e(($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '' ? explode("_",$event->eating_times->evening_snacks_time)[0] : 'No Time Provided')); ?> To <?php
             if ($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '') {
                 try {
                     echo e(explode("_",$event->eating_times->evening_snacks_time)[1]);
@@ -220,9 +220,9 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 
         <tr>
             <td class="table-border td-padding"><b>Number of people in Total</b></td>
-            <td class="table-border td-padding">{{($event->contactus->expected_guest != NULL || $event->contactus->expected_guest != '' ? $event->contactus->expected_guest : 'No Guest List Provided')}}</td>
-            <td class="table-border td-padding"><b>How many under 12yrs? </b> {{($event->kids->under_12_years != NULL || $event->kids->under_12_years != '' ? $event->kids->under_12_years : 'No Children In Event')}}</td>
-            <td class="table-border td-padding"><b>How many under 5yrs? </b> {{($event->kids->under_5_years != NULL || $event->kids->under_5_years != '' ? $event->kids->under_5_years : 'No Children In Event')}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->contactus->expected_guest != NULL || $event->contactus->expected_guest != '' ? $event->contactus->expected_guest : 'No Guest List Provided')); ?></td>
+            <td class="table-border td-padding"><b>How many under 12yrs? </b> <?php echo e(($event->kids->under_12_years != NULL || $event->kids->under_12_years != '' ? $event->kids->under_12_years : 'No Children In Event')); ?></td>
+            <td class="table-border td-padding"><b>How many under 5yrs? </b> <?php echo e(($event->kids->under_5_years != NULL || $event->kids->under_5_years != '' ? $event->kids->under_5_years : 'No Children In Event')); ?></td>
         </tr>
         </tbody>
     </table>
@@ -236,9 +236,10 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 <table class="table table-bordered table-border">
     <tr>
         <td>
-            @if (is_countable($terms))
-            {{(count($terms) > 0) ? $terms->food_beverage : ''}}
-            @endif
+            <?php if(is_countable($terms)): ?>
+            <?php echo e((count($terms) > 0) ? $terms->food_beverage : ''); ?>
+
+            <?php endif; ?>
         </td>
     </tr>
 </table>
@@ -247,9 +248,10 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 <table class="table table-bordered table-border">
     <tr>
         <td>
-            @if (is_countable($terms))
-            {{(count($terms) > 0) ? $terms->administrative_fees : ''}}
-            @endif
+            <?php if(is_countable($terms)): ?>
+            <?php echo e((count($terms) > 0) ? $terms->administrative_fees : ''); ?>
+
+            <?php endif; ?>
         </td>
     </tr>
 </table>
@@ -258,9 +260,10 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 <table class="table table-bordered table-border">
     <tr>
         <td>
-            @if (is_countable($terms))
-            {{(count($terms) > 0) ? $terms->function_room_assignement : ''}}
-            @endif
+            <?php if(is_countable($terms)): ?>
+            <?php echo e((count($terms) > 0) ? $terms->function_room_assignement : ''); ?>
+
+            <?php endif; ?>
         </td>
     </tr>
 </table>
@@ -269,9 +272,10 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 <table class="table table-bordered table-border">
     <tr>
         <td>
-            @if (is_countable($terms))
-            {{(count($terms) > 0) ? $terms->guarantees : ''}}
-            @endif
+            <?php if(is_countable($terms)): ?>
+            <?php echo e((count($terms) > 0) ? $terms->guarantees : ''); ?>
+
+            <?php endif; ?>
         </td>
     </tr>
 </table>
@@ -280,9 +284,10 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 <table class="table table-bordered table-border">
     <tr>
         <td>
-            @if (is_countable($terms))
-            {{(count($terms) > 0) ? $terms->menu_pricing : ''}}
-            @endif
+            <?php if(is_countable($terms)): ?>
+            <?php echo e((count($terms) > 0) ? $terms->menu_pricing : ''); ?>
+
+            <?php endif; ?>
         </td>
     </tr>
 </table>
@@ -291,9 +296,10 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 <table class="table table-bordered table-border">
     <tr>
         <td>
-            @if (is_countable($terms))
-            {{(count($terms) > 0) ? $terms->decoration : ''}}
-            @endif
+            <?php if(is_countable($terms)): ?>
+            <?php echo e((count($terms) > 0) ? $terms->decoration : ''); ?>
+
+            <?php endif; ?>
         </td>
     </tr>
 </table>
@@ -302,9 +308,10 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 <table class="table table-bordered table-border">
     <tr>
         <td>
-            @if (is_countable($terms))
-            {{(count($terms) > 0) ? $terms->security_parking : ''}}
-            @endif
+            <?php if(is_countable($terms)): ?>
+            <?php echo e((count($terms) > 0) ? $terms->security_parking : ''); ?>
+
+            <?php endif; ?>
         </td>
     </tr>
 </table>
@@ -313,9 +320,10 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 <table class="table table-bordered table-border">
     <tr>
         <td>
-            @if (is_countable($terms))
-            {{(count($terms) > 0) ? $terms->damages : ''}}
-            @endif
+            <?php if(is_countable($terms)): ?>
+            <?php echo e((count($terms) > 0) ? $terms->damages : ''); ?>
+
+            <?php endif; ?>
         </td>
     </tr>
 </table>
@@ -324,9 +332,10 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 <table class="table table-bordered table-border">
     <tr>
         <td>
-            @if (is_countable($terms)) 
-            {{(count($terms) > 0) ? $terms->service_fees : ''}}
-            @endif
+            <?php if(is_countable($terms)): ?> 
+            <?php echo e((count($terms) > 0) ? $terms->service_fees : ''); ?>
+
+            <?php endif; ?>
         </td>
     </tr>
 </table>
@@ -335,12 +344,12 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <tr>
         <td class="sign-content">
             <hr>
-            <span>{{$event->user->first_name}} {{$event->user->last_name}}</span>
+            <span><?php echo e($event->user->first_name); ?> <?php echo e($event->user->last_name); ?></span>
         </td>
 
         <td class="sign-content">
             <hr>
-            <span>{{$event->user->first_name}} {{$event->user->last_name}} Signature</span>
+            <span><?php echo e($event->user->first_name); ?> <?php echo e($event->user->last_name); ?> Signature</span>
         </td>
         <td class="sign-content">
             <hr>
@@ -353,12 +362,12 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <tr>
         <td class="sign-content">
             <hr>
-            <span>{{($event->lead ? $event->lead->client_name: 'No Contact Provided')}}</span>
+            <span><?php echo e(($event->lead ? $event->lead->client_name: 'No Contact Provided')); ?></span>
         </td>
 
         <td class="sign-content">
             <hr>
-            <span>{{($event->lead ? $event->lead->client_name: 'No Contact Provided')}} Signature</span>
+            <span><?php echo e(($event->lead ? $event->lead->client_name: 'No Contact Provided')); ?> Signature</span>
         </td>
         <td class="sign-content">
             <hr>
@@ -372,7 +381,7 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
         <td><h4><b>Thanks You!</b></h4></td>
     </tr>
     <tr align="center">
-        <td><b>Phone : </b>{{($event->lead ? $event->lead->mobile: 'No Contact Provided')}}</td>
+        <td><b>Phone : </b><?php echo e(($event->lead ? $event->lead->mobile: 'No Contact Provided')); ?></td>
     </tr>
 </table>
 

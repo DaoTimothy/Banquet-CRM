@@ -1,5 +1,5 @@
 <style>
-    @import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600);
+    @import  url(https://fonts.googleapis.com/css?family=Poppins:400,500,600);
 
     html {
         font-family: 'Poppins', sans-serif;
@@ -127,15 +127,15 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <table>
         <tr>
             <td>
-                <img src="{{url('uploads/site/'.$pdf_logo)}}" height="100px" width="400px" alt="img" align="center" class="pdf-img">
+                <img src="<?php echo e(url('uploads/site/'.$pdf_logo)); ?>" height="100px" width="400px" alt="img" align="center" class="pdf-img">
             </td>
             <td>
                 <table>
                     <tr>
-                        <td><b> Address : </b>{{($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')}}</td>
+                        <td><b> Address : </b><?php echo e(($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')); ?></td>
                     </tr>
                     <tr>
-                        <td><b> Phone : </b> {{($event->lead ? $event->lead->mobile: 'No Contact Provided')}}</td>
+                        <td><b> Phone : </b> <?php echo e(($event->lead ? $event->lead->mobile: 'No Contact Provided')); ?></td>
                     </tr>
                 </table>
             </td>
@@ -147,20 +147,20 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
         <tbody>
         <tr>
             <td class="table-border td-padding"><b>Name</b></td>
-            <td class="table-border td-padding">{{($event->event_decorator->decorator) ? $event->event_decorator->decorator->name : 'No Decorator Selected'}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->event_decorator->decorator) ? $event->event_decorator->decorator->name : 'No Decorator Selected'); ?></td>
         </tr>
         <tr>
             <td class="table-border td-padding"><b>Address</b></td>
-            <td class="table-border td-padding">{{($event->event_decorator->decorator) ? $event->event_decorator->decorator->address : 'No Decorator Selected'}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->event_decorator->decorator) ? $event->event_decorator->decorator->address : 'No Decorator Selected'); ?></td>
         </tr>
         <tr>
             <td class="table-border td-padding"><b>Phone</b></td>
-            <td class="table-border td-padding">{{($event->event_decorator->decorator) ? $event->event_decorator->decorator->phone : 'No Decorator Selected'}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->event_decorator->decorator) ? $event->event_decorator->decorator->phone : 'No Decorator Selected'); ?></td>
         </tr>
 
         <tr>
             <td class="table-border td-padding"><b>Email</b></td>
-            <td class="table-border td-padding">{{($event->event_decorator->decorator) ? $event->event_decorator->decorator->email : 'No Decorator Selected'}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->event_decorator->decorator) ? $event->event_decorator->decorator->email : 'No Decorator Selected'); ?></td>
         </tr>
         </tbody>
     </table>
@@ -170,31 +170,31 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
         <tbody>
         <tr>
             <td class="table-border td-padding"><b>Types of Event</b></td>
-            <td class="table-border td-padding">{{$event->contactus->event_type_trashed->name}}</td>
+            <td class="table-border td-padding"><?php echo e($event->contactus->event_type_trashed->name); ?></td>
             <td class="table-border td-padding"><b>Date Of Event</b></td>
-            <td class="table-border td-padding">{{date('D d,Y',strtotime($event->booking->from_date))}}</td>
+            <td class="table-border td-padding"><?php echo e(date('D d,Y',strtotime($event->booking->from_date))); ?></td>
         </tr>
         <tr>
             <td class="table-border td-padding"><b>Address for your event</b></td>
-            <td class="table-border td-padding" colspan="3">{{($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')}}</td>
+            <td class="table-border td-padding" colspan="3"><?php echo e(($event->logistics->function_address != NULL ? $event->logistics->function_address : 'No Address Provided')); ?></td>
         </tr>
         <tr>
             <td class="table-border td-padding"><b>Our Arrival Time</b></td>
-            <td class="table-border td-padding">{{($event->logistics->arrival_time != NULL ? $event->logistics->arrival_time : 'No Time Provided')}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->logistics->arrival_time != NULL ? $event->logistics->arrival_time : 'No Time Provided')); ?></td>
             <td class="table-border td-padding"><b>Food Service Time</b></td>
-            <td class="table-border td-padding">{{($event->eating_times->service_time != NULL ? $event->eating_times->service_time : 'No Time Provided')}}</td>
+            <td class="table-border td-padding"><?php echo e(($event->eating_times->service_time != NULL ? $event->eating_times->service_time : 'No Time Provided')); ?></td>
         </tr>
 
         <tr>
             <td class="table-border td-padding"><b>Times you would like to meal served?</b></td>
-            <td class="table-border td-padding"><b>Canapes : </b>{{($event->eating_times->canapes != NULL || $event->eating_times->canapes != '' ? $event->eating_times->canapes : 'No Time Provided')}}</td>
-            <td class="table-border td-padding"><b>Main : </b>{{($event->eating_times->service_time != NULL || $event->eating_times->service_time != '' ? $event->eating_times->service_time : 'No Time Provided')}}</td>
-            <td class="table-border td-padding"><b>Dessert : </b>{{($event->eating_times->dinner_time != NULL || $event->eating_times->dinner_time != '' ? explode("_",$event->eating_times->dinner_time)[0] : 'No Time Provided')}}</td>
+            <td class="table-border td-padding"><b>Canapes : </b><?php echo e(($event->eating_times->canapes != NULL || $event->eating_times->canapes != '' ? $event->eating_times->canapes : 'No Time Provided')); ?></td>
+            <td class="table-border td-padding"><b>Main : </b><?php echo e(($event->eating_times->service_time != NULL || $event->eating_times->service_time != '' ? $event->eating_times->service_time : 'No Time Provided')); ?></td>
+            <td class="table-border td-padding"><b>Dessert : </b><?php echo e(($event->eating_times->dinner_time != NULL || $event->eating_times->dinner_time != '' ? explode("_",$event->eating_times->dinner_time)[0] : 'No Time Provided')); ?></td>
         </tr>
 
         <tr>
             <td class="table-border td-padding"><b>Time to snacks Served?</b></td>
-            <td class="table-border td-padding">{{($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '' ? explode("_",$event->eating_times->morning_snacks_time)[0] : 'No Time Provided')}} To <?php
+            <td class="table-border td-padding"><?php echo e(($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '' ? explode("_",$event->eating_times->morning_snacks_time)[0] : 'No Time Provided')); ?> To <?php
             if ($event->eating_times->morning_snacks_time != NULL || $event->eating_times->morning_snacks_time != '') {
                 try {
                     echo e(explode("_",$event->eating_times->morning_snacks_time)[1]);
@@ -205,7 +205,7 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
                 echo e('No Time Provided');
             }
             ?></td>
-            <td class="table-border td-padding" colspan="2">{{($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '' ? explode("_",$event->eating_times->evening_snacks_time)[0] : 'No Time Provided')}} To <?php
+            <td class="table-border td-padding" colspan="2"><?php echo e(($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '' ? explode("_",$event->eating_times->evening_snacks_time)[0] : 'No Time Provided')); ?> To <?php
             if ($event->eating_times->evening_snacks_time != NULL || $event->eating_times->evening_snacks_time != '') {
                 try {
                     echo e(explode("_",$event->eating_times->evening_snacks_time)[1]);
@@ -220,7 +220,7 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
 
         <tr>
             <td class="table-border td-padding"><b>Number of people in Total</b></td>
-            <td class="table-border td-padding" colspan="3">{{($event->contactus->expected_guest != NULL || $event->contactus->expected_guest != '' ? $event->contactus->expected_guest : 'No Guest List Provided')}}</td>
+            <td class="table-border td-padding" colspan="3"><?php echo e(($event->contactus->expected_guest != NULL || $event->contactus->expected_guest != '' ? $event->contactus->expected_guest : 'No Guest List Provided')); ?></td>
         </tr>
         </tbody>
     </table>
@@ -229,7 +229,8 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <h3><b>Decoration Contract Terms</b></h3>
     <table>
         <tr>
-            <td>{{$event->event_decorator->decoration_contract_terms}}
+            <td><?php echo e($event->event_decorator->decoration_contract_terms); ?>
+
             </td>
         </tr>
     </table>
@@ -237,7 +238,8 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <h3><b>Decoration Fees</b></h3>
     <table>
         <tr>
-            <td>{{$event->event_decorator->decoration_fees}}
+            <td><?php echo e($event->event_decorator->decoration_fees); ?>
+
             </td>
         </tr>
     </table>
@@ -245,7 +247,8 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <h3><b>Decoration Arrangements</b></h3>
     <table>
         <tr>
-            <td><td>{{$event->event_decorator->decoration_arrangements}}
+            <td><td><?php echo e($event->event_decorator->decoration_arrangements); ?>
+
             </td>
         </tr>
     </table>
@@ -253,7 +256,8 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <h3><b>Damage To Property</b></h3>
     <table>
         <tr>
-            <td><td>{{$event->event_decorator->damage_to_property}}
+            <td><td><?php echo e($event->event_decorator->damage_to_property); ?>
+
             </td>
         </tr>
     </table>
@@ -261,7 +265,8 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <h3><b>Deposit</b></h3>
     <table>
         <tr>
-            <td><td>{{$event->event_decorator->deposit}}
+            <td><td><?php echo e($event->event_decorator->deposit); ?>
+
             </td>
         </tr>
     </table>
@@ -269,7 +274,8 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <h3><b>Cancellation and Design Change Fees</b></h3>
     <table>
         <tr>
-            <td><td>{{$event->event_decorator->cancellation_and_design_change_fees}}
+            <td><td><?php echo e($event->event_decorator->cancellation_and_design_change_fees); ?>
+
             </td>
         </tr>
     </table>
@@ -277,21 +283,24 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <h3><b>Safety</b></h3>
     <table>
         <tr>
-            <td><td>{{$event->event_decorator->safety}}
+            <td><td><?php echo e($event->event_decorator->safety); ?>
+
             </td>
         </tr>
     </table>
 
     <h3><b>Material Guarantee</b></h3>
     <table>
-    <td><td>{{$event->event_decorator->material_guarantee}}
+    <td><td><?php echo e($event->event_decorator->material_guarantee); ?>
+
     </td>
     </table>
 
     <h3><b>Making Changes</b></h3>
     <table>
         <tr>
-            <td><td>{{$event->event_decorator->making_changes}}
+            <td><td><?php echo e($event->event_decorator->making_changes); ?>
+
             </td>
         </tr>
     </table>
@@ -301,22 +310,22 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
         <tbody>
         <tr class="pdf-header-color table-title td-padding table-border">
             <td class="table-border td-padding"><b>Decoration</b></td>
-            {{--<td class="table-border td-padding"><b>Price</b></td>--}}
+            
         </tr>
-        @if($event->event_decorator->service_needed != NULL || $event->event_decorator->service_needed != '')
+        <?php if($event->event_decorator->service_needed != NULL || $event->event_decorator->service_needed != ''): ?>
             <?php $items = explode(",",$event->event_decorator->service_needed) ?>
-            @foreach($items as $value)
+            <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr class="table-border">
-                    <td class="table-border td-padding">{{$value}}</td>
-                    {{--<td class="table-border td-padding">4</td>--}}
-                    {{--<td class="table-border td-padding">$5.00</td>--}}
+                    <td class="table-border td-padding"><?php echo e($value); ?></td>
+                    
+                    
                 </tr>
-            @endforeach
-        @else
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <?php else: ?>
             <tr class="table-border">
                 <td class="table-border td-padding">No Item Selected</td>
             </tr>
-        @endif
+        <?php endif; ?>
         </tbody>
     </table>
 
@@ -325,7 +334,8 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <table>
         <tr>
             <td>
-            <td>{{$event->event_decorator->approval}}
+            <td><?php echo e($event->event_decorator->approval); ?>
+
             </td>
         </tr>
     </table>
@@ -334,12 +344,12 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <tr>
         <td class="sign-content">
             <hr>
-            <span>{{$event->user->first_name}} {{$event->user->last_name}} Name</span>
+            <span><?php echo e($event->user->first_name); ?> <?php echo e($event->user->last_name); ?> Name</span>
         </td>
 
         <td class="sign-content">
             <hr>
-            <span>{{$event->user->first_name}} {{$event->user->last_name}} Signature</span>
+            <span><?php echo e($event->user->first_name); ?> <?php echo e($event->user->last_name); ?> Signature</span>
         </td>
         <td class="sign-content">
             <hr>
@@ -352,12 +362,12 @@ $pdf_logo = (count($pdf_logo) > 0 ? trim(unserialize($pdf_logo->pluck("setting_v
     <tr>
         <td class="sign-content">
             <hr>
-            <span>{{($event->lead ? $event->lead->client_name: 'No Contact Provided')}}</span>
+            <span><?php echo e(($event->lead ? $event->lead->client_name: 'No Contact Provided')); ?></span>
         </td>
 
         <td class="sign-content">
             <hr>
-            <span>{{($event->lead ? $event->lead->client_name: 'No Contact Provided')}} Signature</span>
+            <span><?php echo e(($event->lead ? $event->lead->client_name: 'No Contact Provided')); ?> Signature</span>
         </td>
         <td class="sign-content">
             <hr>

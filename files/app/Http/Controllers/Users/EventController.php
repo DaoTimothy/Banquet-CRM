@@ -945,7 +945,7 @@ class EventController extends UserController
         if ($request->has('download')) {
             return $this->downloadPDF('user.event.contractpdf',$event);
         } else {
-            return view('user.event.viewPdf', compact('title', 'event', 'action', 'pageName'));
+            return view('user.event.viewPdf', compact('title', 'event', 'pageName'));
         }
     }
 
@@ -971,7 +971,7 @@ class EventController extends UserController
         if ($request->has('download')) {
             return $this->downloadPDF('user.event.invoicepdf',$event,$data,$menu_items_id);
         } else {
-            return view('user.event.viewPdf', compact('title', 'event', 'action','data','menu_items_id', 'pageName'));
+            return view('user.event.viewPdf', compact('title', 'event', 'data','menu_items_id', 'pageName'));
         }
     }
 
@@ -984,7 +984,8 @@ class EventController extends UserController
         if ($request->has('download')) {
             return $this->downloadPDF('user.event.decorationpdf',$event);
         } else {
-            return view('user.event.viewPdf', compact('title', 'event', 'action', 'pageName'));
+            
+            return view('user.event.viewPdf', compact('title', 'event', 'pageName'));
         }
     }
 
@@ -997,7 +998,7 @@ class EventController extends UserController
         if ($request->has('download')) {
             return $this->downloadPDF('user.event.entertainmentpdf',$event);
         } else {
-            return view('user.event.viewPdf', compact('title', 'event', 'action', 'pageName'));
+            return view('user.event.viewPdf', compact('title', 'event', 'pageName'));
         }
     }
 
@@ -1010,7 +1011,7 @@ class EventController extends UserController
         if ($request->has('download')) {
             return $this->downloadPDF('user.event.photographypdf',$event);
         } else {
-            return view('user.event.viewPdf', compact('title', 'event', 'action', 'pageName'));
+            return view('user.event.viewPdf', compact('title', 'event', 'pageName'));
         }
     }
 
@@ -1036,7 +1037,7 @@ class EventController extends UserController
         if ($request->has('download')) {
             return $this->downloadPDF('user.event.staffpdf',$event,$data,$menu_items_id);
         } else {
-            return view('user.event.viewPdf', compact('title', 'event', 'action', 'pageName','data','menu_items_id'));
+            return view('user.event.viewPdf', compact('title', 'event', 'pageName','data','menu_items_id'));
         }
     }
 
@@ -1050,7 +1051,7 @@ class EventController extends UserController
         if ($request->has('download')) {
             return $this->downloadPDF('user.event.proposalpdf', $event);
         } else {
-            return view('user.event.viewPdf', compact('title', 'event', 'action', 'pageName'));
+            return view('user.event.viewPdf', compact('title', 'event', 'pageName'));
         }
     }
 
@@ -1076,7 +1077,7 @@ class EventController extends UserController
         if ($request->has('download')) {
             return $this->downloadPDF('user.event.bookingorderpdf',$event,$data,$menu_items_id);
         } else {
-            return view('user.event.viewPdf', compact('title', 'event', 'action', 'pageName','data','menu_items_id'));
+            return view('user.event.viewPdf', compact('title', 'event', 'pageName','data','menu_items_id'));
         }
     }
 
@@ -1086,7 +1087,7 @@ class EventController extends UserController
         $pdf = App::make('dompdf.wrapper');
         $pdf->setPaper('a4', 'landscape');
         $pdf->loadView($view, compact('event','data','menu_items_id'));
-//        return $pdf->download($filename . '.pdf');
+        return $pdf->download($filename . '.pdf');
         return $pdf->stream();
 //        $pdf->save('./pdf/' . $filename . '.pdf');
     }
