@@ -932,7 +932,7 @@ class EventController extends UserController
         if ($request->has('download')) {
             return $this->downloadPDF('user.event.menupdf',$event,$data,$menu_items_id);
         } else {
-            return view('user.event.viewPdf', compact('title', 'event', 'action', 'pageName','data','menu_items_id'));
+            return view('user.event.viewPdf', compact('title', 'event', 'pageName','data','menu_items_id'));
         }
     }
 
