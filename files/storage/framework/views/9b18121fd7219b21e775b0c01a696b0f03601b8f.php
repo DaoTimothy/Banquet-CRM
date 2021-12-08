@@ -139,7 +139,7 @@
     <li <?php echo (Request::is( '/task/*') || Request::is( 'task') ? 'class="active"' : ''); ?>>
         <a href="<?php echo e(url('/task')); ?>">
             <span class="nav-icon">
-         <i class="material-icons">event_task</i>
+         <i class="material-icons">task</i>
         </span>
             <span class="nav-text"> <?php echo e(trans('left_menu.todo')); ?></span>
         </a>

@@ -226,9 +226,8 @@ class DashboardController extends UserController
                         'year' =>Carbon::now()->subDay($i)->format('d'),
                         'sale'=>Saleorder::where(\DB::raw('DATE(created_at)'), Carbon::now()->subDay($i)->format('Y-m-d'))->count());
             }
-            //TIMOTHY DAO
             return view('user.index', compact('customers', 'contracts', 'event_count','products',
-                'customers_world', 'customers_usa','event_leads',/*'stages'*/0,'decorator','entertainer','activity',
+                'customers_world', 'customers_usa','event_leads', 'decorator','entertainer','activity',
                 'photo','caterer','miscellaneous','transport','today_event','leads_chart','event_chart','sale_chart','saleOrders','today_leads'));
         }
     }

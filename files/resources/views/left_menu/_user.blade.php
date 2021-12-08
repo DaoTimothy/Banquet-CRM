@@ -139,7 +139,7 @@
     <li {!! (Request::is( '/task/*') || Request::is( 'task') ? 'class="active"' : '') !!}>
         <a href="{{url('/task')}}">
             <span class="nav-icon">
-         <i class="material-icons">event_task</i>
+         <i class="material-icons">task</i>
         </span>
             <span class="nav-text"> {{trans('left_menu.todo')}}</span>
         </a>

@@ -11,7 +11,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <i class="material-icons">event_task</i>
+                <i class="material-icons">task</i>
                 {{ $title }}
             </h4>
             <span class="pull-right"><i class="fa fa-fw fa-chevron-up clickable"></i></span>

@@ -9,7 +9,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <i class="material-icons">event_task</i>
+                <i class="material-icons">task</i>
                 <?php echo e($title); ?>
 
             </h4>
