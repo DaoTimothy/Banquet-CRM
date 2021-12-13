@@ -101,7 +101,7 @@ class TableCell extends Block
         $height = max($style_height, $this->_frame->get_content_height());
 
         // Let the cellmap know our height
-        $cell_height = $height / count($cells["rows"]);
+        $cell_height = floor($height) / count($cells["rows"]);
 
         if ($style_height <= $height)
             $cell_height += $top_space + $bottom_space;

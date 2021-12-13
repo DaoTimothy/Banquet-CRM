@@ -218,9 +218,9 @@ abstract class AbstractFrameReflower
             if ($min < $width) $min = $width;
             if ($max < $width) $max = $width;
         }
-
-        $min += $delta;
-        $max += $delta;
+        $delta = (int)$delta;
+        $min = (int)$min + $delta;
+        $max = (int)$max + $delta;
         return $this->_min_max_cache = array($min, $max, "min" => $min, "max" => $max);
     }
 

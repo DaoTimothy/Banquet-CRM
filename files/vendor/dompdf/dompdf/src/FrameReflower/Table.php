@@ -574,8 +574,8 @@ class Table extends AbstractFrameReflower
 
         $delta = $style->length_in_pt($dims, $this->_frame->get_containing_block("w"));
 
-        $this->_state["min_width"] += $delta;
-        $this->_state["max_width"] += $delta;
+        $this->_state["min_width"] += floor($delta);
+        $this->_state["max_width"] += ceil($delta);
 
         return $this->_min_max_cache = array(
             $this->_state["min_width"],
