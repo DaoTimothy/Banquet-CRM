@@ -112,7 +112,7 @@ class Inline extends AbstractRenderer
             if (is_null($w))
                 $w = $child_w;
             else
-                $w += $child_w;
+                $w += (int)$child_w;
 
             $h = max($h, $child_h);
 
@@ -141,7 +141,7 @@ class Inline extends AbstractRenderer
             $this->_background_image($url, $x + $widths[3], $y + $widths[0], $w, $h, $style);
 
         // Add the border widths
-        $w += $widths[1] + $widths[3];
+        $w = (int)$w + (int)$widths[1] + (int)$widths[3];
         $h += $widths[0] + $widths[2];
 
         // make sure the border and background start inside the left margin
