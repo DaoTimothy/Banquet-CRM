@@ -281,7 +281,7 @@
                 success : function(data){
                     if(status.toLowerCase() == 'converted'){
                         if(!data){
-                            window.location.href = host + '/event/create/'+id;
+                            window.location.href = host + '/Banquet-CRM/files/public/event/create/'+id+'#/';
                         }
                     }
                     toastr.options = {
