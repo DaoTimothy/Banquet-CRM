@@ -16,6 +16,7 @@
 
 </head>
 <body id="sign-in">
+<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 <div class="app" id="app">
     <!-- ############ LAYOUT START-->
 
