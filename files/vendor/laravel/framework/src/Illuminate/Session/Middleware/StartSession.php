@@ -54,9 +54,8 @@ class StartSession
         // so that the data is ready for an application. Note that the Laravel sessions
         // do not make use of PHP "native" sessions in any way since they are crappy.
         if ($this->sessionConfigured()) {
-            $request->setLaravelSession(
-                $session = $this->startSession($request)
-            );
+            $session = $this->startSession($request);
+            $request->setLaravelSession($session);
 
             $this->collectGarbage($session);
         }
@@ -71,7 +70,7 @@ class StartSession
 
             $this->addCookieToResponse($response, $session);
         }
-
+        
         return $response;
     }
 
@@ -96,7 +95,8 @@ class StartSession
      * @return \Illuminate\Contracts\Session\Session
      */
     protected function startSession(Request $request)
-    {
+    {   
+        
         return tap($this->getSession($request), function ($session) use ($request) {
             $session->setRequestOnHandler($request);
 

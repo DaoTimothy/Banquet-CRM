@@ -10,7 +10,7 @@
                     <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                         {!! Form::label(trans('auth.email')) !!} :
                         <span>{{ $errors->first('email', ':message') }}</span>
-                        {!! Form::email('email', null, array('class' => 'form-control', 'required'=>'required', 'placeholder'=>'E-mail' )) !!}
+                        {!! Form::email('email', null, array('class' => 'form-control', 'required'=>'required', 'placeholder'=>'E-maileeeeeeeeeee' )) !!}
                     </div>
                     <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                         {!! Form::label(trans('auth.password')) !!} :

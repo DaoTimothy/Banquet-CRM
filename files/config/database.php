@@ -57,7 +57,7 @@ return [
             'driver' => 'mysql',
             'host' => 'localhost',
             'port' => '3306',
-            'database' => 'banquet_2',
+            'database' => 'bcrm_2',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8mb4',

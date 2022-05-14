@@ -10,7 +10,7 @@
                     <div class="form-group <?php echo e($errors->has('email') ? 'has-error' : ''); ?>">
                         <?php echo Form::label(trans('auth.email')); ?> :
                         <span><?php echo e($errors->first('email', ':message')); ?></span>
-                        <?php echo Form::email('email', null, array('class' => 'form-control', 'required'=>'required', 'placeholder'=>'E-mail' )); ?>
+                        <?php echo Form::email('email', null, array('class' => 'form-control', 'required'=>'required', 'placeholder'=>'E-maileeeeeeeeeee' )); ?>
 
                     </div>
                     <div class="form-group <?php echo e($errors->has('password') ? 'has-error' : ''); ?>">

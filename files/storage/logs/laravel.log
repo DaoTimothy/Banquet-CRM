@@ -106,3 +106,30 @@
 #104 /var/www/html/codecanyon/files/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #105 /var/www/html/codecanyon/files/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #106 {main}  
+[2022-01-17 23:39:39] production.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to undefined method Closure::__set_state() in E:\wamp\www\Banquet-CRM\files\bootstrap\cache\config.php:177
+Stack trace:
+#0 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\LoadConfiguration.php(28): require()
+#1 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(208): Illuminate\Foundation\Bootstrap\LoadConfiguration->bootstrap(Object(Illuminate\Foundation\Application))
+#2 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(162): Illuminate\Foundation\Application->bootstrapWith(Array)
+#3 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(146): Illuminate\Foundation\Http\Kernel->bootstrap()
+#4 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#5 E:\wamp\www\Banquet-CRM\files\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#6 {main}  
+[2022-01-17 23:39:44] production.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to undefined method Closure::__set_state() in E:\wamp\www\Banquet-CRM\files\bootstrap\cache\config.php:177
+Stack trace:
+#0 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\LoadConfiguration.php(28): require()
+#1 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(208): Illuminate\Foundation\Bootstrap\LoadConfiguration->bootstrap(Object(Illuminate\Foundation\Application))
+#2 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(162): Illuminate\Foundation\Application->bootstrapWith(Array)
+#3 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(146): Illuminate\Foundation\Http\Kernel->bootstrap()
+#4 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#5 E:\wamp\www\Banquet-CRM\files\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#6 {main}  
+[2022-01-17 23:40:27] production.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to undefined method Closure::__set_state() in E:\wamp\www\Banquet-CRM\files\bootstrap\cache\config.php:177
+Stack trace:
+#0 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\LoadConfiguration.php(28): require()
+#1 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(208): Illuminate\Foundation\Bootstrap\LoadConfiguration->bootstrap(Object(Illuminate\Foundation\Application))
+#2 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(162): Illuminate\Foundation\Application->bootstrapWith(Array)
+#3 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(146): Illuminate\Foundation\Http\Kernel->bootstrap()
+#4 E:\wamp\www\Banquet-CRM\files\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#5 E:\wamp\www\Banquet-CRM\files\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#6 {main}  

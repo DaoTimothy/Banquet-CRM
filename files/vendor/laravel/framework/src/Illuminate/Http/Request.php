@@ -420,6 +420,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function setLaravelSession($session)
     {
+        dd($this);
         $this->session = $session;
     }
 
